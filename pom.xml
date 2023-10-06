@@ -7,6 +7,38 @@
     <groupId>org.example</groupId>
     <artifactId>AutomationPractice_01</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>11</java.version>
+        <cucumber.version>4.7.4</cucumber.version>
+        <selenium.version>3.141.59</selenium.version>
+        <junit.version>5.7.0</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <hamcrest.version>1.3</hamcrest.version>
+        <lombok.version>1.18.8</lombok.version>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
 
         <dependency>
@@ -14,15 +46,12 @@
             <artifactId>groovy</artifactId>
             <version>3.0.7</version>
         </dependency>
-
-
         <!-- Selenium WebDriver -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version> <!-- Use the latest version available -->
         </dependency>
-
         <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -35,7 +64,6 @@
             <version>6.10.4</version> <!-- Use the latest version available -->
             <scope>test</scope>
         </dependency>
-
         <!-- JUnit (for running Cucumber tests) -->
         <dependency>
             <groupId>junit</groupId>
@@ -43,11 +71,45 @@
             <version>4.13.2</version> <!-- Use the latest version available -->
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports-cucumber4-adapter</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+    </dependencies>
 
 </project>
