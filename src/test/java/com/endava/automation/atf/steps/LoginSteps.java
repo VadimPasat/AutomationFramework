@@ -19,7 +19,7 @@
 //
 //    private final ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
 //    WebDriver webDriver = (WebDriver) scenarioContext.getData("driver");
-//    private final AdminLoginPage adminLoginPage = new AdminLoginPage(webDriver);
+//    private final TypeOfUsers typeOfUsers = new TypeOfUsers(webDriver);
 //    private final UserLoginPage userLoginPage = new UserLoginPage(webDriver);
 //
 //    @Given("{} logs in as {}")
