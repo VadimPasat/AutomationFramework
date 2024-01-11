@@ -10,48 +10,40 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 @Getter
 public class UserLoginPage extends AbstractPage {
 
-    @FindBy(css = "[href*='account/account'].dropdown-toggle")
-    private WebElement myAccountButton;
+    @FindBy(id = "user-name")
+    private WebElement userNameField;
 
-    @FindBy(css = "[href*='account/login']")
-    private WebElement loginButton;
-
-    @FindBy(id = "input-email")
-    private WebElement emailField;
-
-    @FindBy(id = "input-password")
+    @FindBy(id = "password")
     private WebElement passwordField;
 
-    @FindBy(xpath = "//*[@type='submit']")
-    private WebElement submitButton;
+    @FindBy(id = "login-button")
+    private WebElement loginButton;
+
+    @FindBy(xpath = "//*[@id=\"header_container\"]/div[2]/span")
+    private WebElement assertThatImLoggedIn;
+
+    @FindBy(id = "react-burger-menu-btn")
+    private WebElement myAccountButton;
 
     public UserLoginPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(css = "[href*='account/logout']")
+    @FindBy(id = "logout_sidebar_link")
     private WebElement logoutButton;
-    @FindBy(css = ".pull-right [href*='common/home']")
-    private WebElement continueButton;
 
     public void userLogin(Users user) throws InterruptedException {
-
-        wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
-        myAccountButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(loginButton));
-        loginButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(passwordField));
-        emailField.sendKeys(user.getUsername());
+        userNameField.sendKeys(user.getUsername());
         passwordField.sendKeys(user.getPassword());
-        submitButton.click();
+        loginButton.click();
     }
 
-    public void userLogout(Users user) {
+    public void userLogout(Users user) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
         myAccountButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
+        Thread.sleep(1000);
         logoutButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(continueButton));
-        continueButton.click();
     }
 }
