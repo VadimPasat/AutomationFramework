@@ -1,13 +1,14 @@
-
+@Run
 Feature: Login
 
+
   Background:
-    Given STANDARD_USER logs in
+    Given PERFORMANCE_GLITCH_USER logs in
     And Home page is displayed
 
 
-  Scenario: Add an product to card and remove it
+  Scenario: PERFORMANCE_GLITCH_USER adding and deleting product from card
     When Select random product
     And Product was added successfully
     Then Delete product from card
-    And STANDARD_USER logs out
+    And PERFORMANCE_GLITCH_USER logs out

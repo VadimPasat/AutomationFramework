@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 import java.util.Random;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @Getter
@@ -44,18 +45,15 @@ public class AddProductToCard extends AbstractPage {
     public void selectRandomProduct() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(randomProduct));
         randomProduct.click();
+        assertNotNull("Failed to add product to cart", randomProduct);
+        log.info("The item was successfully selected");
         wait.until(ExpectedConditions.elementToBeClickable(clickOnShoppingCard));
         clickOnShoppingCard.click();
-        wait.until(ExpectedConditions.elementToBeClickable(cardQuantity));
-        //Thread.sleep(1000);
-        cardQuantity.getSize();
     }
 
     public void clickOnShoppingCard() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(clickOnShoppingCard));
-        //Thread.sleep(1000);
         clickOnShoppingCard.click();
-        //Thread.sleep(1000);
     }
 
     public void checkCardQuantity() throws InterruptedException {
@@ -65,8 +63,8 @@ public class AddProductToCard extends AbstractPage {
         String cartItemCount = cartIcon.getText(); // Get the cart item count text
         Thread.sleep(1000);
         // Verify that the cart item count is greater than zero
-        assertTrue("Product was added to cart", Integer.parseInt(cartItemCount) > 0);
-        System.out.println(Integer.parseInt(cartItemCount));
+        assertTrue("Failed to add product to card", Integer.parseInt(cartItemCount) > 0);
+        log.info("The item was successfully added to cart");
         Thread.sleep(1000);
     }
 }
