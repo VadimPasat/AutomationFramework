@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dcbd48c-6f84-4f72-982a-ffba202de667" name="Changes" comment="Adding multiple functions" />
+    <list default="true" id="1f4f7792-1772-4b7e-9734-6d0fdb250e7a" name="Changes" comment="Adding multiple functions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,6 +120,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Cucumber Java.Scenario: User can login with valid credentials" />
+      <item itemvalue="Cucumber Java.Scenario: User can login with valid credentials (1)" />
+      <item itemvalue="JUnit.LoginStepDefinitions (1)" />
+      <item itemvalue="JUnit.LoginStepDefinitions" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.LoginStepDefinitions (1)" />
