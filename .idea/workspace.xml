@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f4f7792-1772-4b7e-9734-6d0fdb250e7a" name="Changes" comment="Adding multiple functions" />
+    <list default="true" id="1f4f7792-1772-4b7e-9734-6d0fdb250e7a" name="Changes" comment="Adding multiple functions01">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +66,20 @@
       <recent name="C:\AutomationPractice\AutomationFramework\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Cucumber Java.Scenario: User can login with valid credentials">
+  <component name="RunManager" selected="Cucumber Java.Feature: standartUserTest">
+    <configuration name="Feature: standartUserTest" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="4.5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/com/endava/automation/atf/features/standartUserTest.feature" />
+      <option name="GLUE" value="com.endava.automation.atf.steps com.endava.automation.atf.hook" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="AutomationPractice_01" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm4SMFormatter" />
+      <option name="SUGGESTED_NAME" value="Feature: standartUserTest" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Scenario: User can login with valid credentials (1)" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/resources/firsttest/login.feature" />
@@ -123,11 +138,13 @@
     <list>
       <item itemvalue="Cucumber Java.Scenario: User can login with valid credentials" />
       <item itemvalue="Cucumber Java.Scenario: User can login with valid credentials (1)" />
+      <item itemvalue="Cucumber Java.Feature: standartUserTest" />
       <item itemvalue="JUnit.LoginStepDefinitions (1)" />
       <item itemvalue="JUnit.LoginStepDefinitions" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cucumber Java.Feature: standartUserTest" />
         <item itemvalue="JUnit.LoginStepDefinitions (1)" />
         <item itemvalue="Cucumber Java.Scenario: User can login with valid credentials (1)" />
         <item itemvalue="Cucumber Java.Scenario: User can login with valid credentials" />
@@ -151,6 +168,7 @@
     <MESSAGE value="First Commit" />
     <MESSAGE value="Clear project" />
     <MESSAGE value="Adding multiple functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding multiple functions" />
+    <MESSAGE value="Adding multiple functions01" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding multiple functions01" />
   </component>
 </project>
