@@ -1,0 +1,16 @@
+com\endava\automation\atf\constant\TypeOfUsers.class
+com\endava\automation\atf\manager\WebDriverManager.class
+com\endava\automation\atf\configreader\ConfigFileReader.class
+com\endava\automation\atf\screenshot\CreateFolder.class
+com\endava\automation\atf\datagenerator\DataGenerator.class
+com\endava\automation\atf\screenshot\ScreenShotUtils.class
+com\endava\automation\atf\constant\Messages.class
+com\endava\automation\atf\constant\Users.class
+com\endava\automation\atf\manager\FileReaderManager.class
+Main.class
+com\endava\automation\atf\page\AbstractPage.class
+com\endava\automation\atf\page\UserHomePage.class
+com\endava\automation\atf\page\UserLoginPage.class
+com\endava\automation\atf\manager\WebDriverManager$1.class
+com\endava\automation\atf\screenshot\ScreenShot.class
+com\endava\automation\atf\constant\DriverType.class

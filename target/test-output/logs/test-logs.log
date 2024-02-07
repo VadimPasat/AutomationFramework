@@ -1,0 +1,659 @@
+2023-11-10 16:31:15 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-10 16:31:16 INFO  AfterHook:16 - Driver was closed
+
+2023-11-10 16:34:54 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-10 16:34:55 INFO  AfterHook:16 - Driver was closed
+
+2023-11-10 16:36:44 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-10 16:36:45 INFO  AfterHook:16 - Driver was closed
+
+2023-11-10 17:06:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-10 17:06:35 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 11:15:31 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 11:15:38 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 11:26:19 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 11:26:24 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 11:27:52 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 11:28:13 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 11:46:23 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 11:46:31 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 11:55:37 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 11:55:48 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:05:02 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:05:41 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:06:47 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:06:55 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:08:32 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:08:40 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:18:43 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:19:21 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:23:43 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:23:55 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:34:59 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:35:01 INFO  AfterHook:16 - Driver was closed
+
+2023-11-13 12:35:24 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-13 12:35:28 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 11:48:24 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 11:48:29 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 12:58:28 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 12:58:31 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 13:00:54 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 13:00:57 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 17:15:17 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 17:15:20 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 17:16:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 17:16:21 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 18:28:28 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 18:28:31 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 18:30:57 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 18:31:09 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 18:33:44 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 18:34:04 INFO  AfterHook:16 - Driver was closed
+
+2023-11-14 18:35:09 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-11-14 18:35:29 INFO  AfterHook:16 - Driver was closed
+
+2023-12-04 11:19:24 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-04 11:19:49 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:06:52 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:07:13 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:07:59 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:08:02 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:08:26 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:08:28 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:09:04 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:09:06 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:10:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:10:19 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:10:58 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:11:19 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:15:17 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:15:40 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:16:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:16:56 INFO  AfterHook:16 - Driver was closed
+
+2023-12-06 18:17:42 INFO  BeforeHook:17 - Driver was initiated successfully
+2023-12-06 18:18:04 INFO  AfterHook:16 - Driver was closed
+
+2024-01-04 16:44:49 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-04 16:45:29 INFO  AfterHook:16 - Driver was closed
+
+2024-01-04 16:46:36 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-04 16:47:16 INFO  AfterHook:16 - Driver was closed
+
+2024-01-04 17:27:27 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-04 17:27:58 INFO  AfterHook:16 - Driver was closed
+
+2024-01-04 17:32:03 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-04 17:32:54 INFO  AfterHook:16 - Driver was closed
+
+2024-01-04 17:33:56 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-04 17:34:48 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:23:15 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:25:28 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:26:37 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:39:56 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:40:03 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:40:21 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:40:27 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:40:39 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:40:46 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:41:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:41:56 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:43:18 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:43:25 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:44:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:44:38 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:45:22 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:45:44 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:47:08 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:47:15 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:47:43 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:47:49 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 15:50:09 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 15:50:31 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:25:37 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:25:44 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:25:58 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:26:20 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:26:50 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:27:17 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:27:46 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:29:52 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:32:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:32:22 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:38:27 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:39:30 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 16:44:27 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:47:41 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:48:23 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 16:48:52 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:05:39 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:05:41 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:06:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:07:10 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:07:46 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:07:58 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:08:33 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:09:36 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:10:05 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:10:12 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:10:35 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:10:42 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:11:02 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:11:09 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:11:46 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:12:49 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:13:22 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:13:29 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:15:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:15:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:15:48 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:21:03 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:21:25 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:22:58 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:23:04 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:27:13 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:27:20 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:28:48 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:28:51 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:29:36 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:30:06 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:30:08 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:30:28 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:35:03 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:35:10 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:35:18 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:35:25 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:35:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:35:40 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:36:06 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:36:12 INFO  AfterHook:16 - Driver was closed
+
+2024-01-05 17:38:12 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-05 17:38:18 INFO  AfterHook:16 - Driver was closed
+
+2024-01-11 13:56:05 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-11 13:56:06 INFO  AfterHook:16 - Driver was closed
+
+2024-01-11 13:56:09 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-11 13:56:16 INFO  AfterHook:16 - Driver was closed
+
+2024-01-11 13:56:49 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-11 13:56:57 INFO  AfterHook:16 - Driver was closed
+
+2024-01-11 14:42:23 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-11 14:42:31 INFO  AfterHook:16 - Driver was closed
+
+2024-01-11 15:04:22 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-11 15:04:29 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:28:12 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:28:19 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:30:00 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:30:07 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:30:26 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:30:32 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:32:57 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:32:59 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 11:33:00 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 11:33:04 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:35:08 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:35:11 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:35:35 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:35:38 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:38:35 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:38:38 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 11:38:38 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 11:38:43 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:38:58 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:39:00 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 11:39:00 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 11:39:04 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:41:22 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:41:24 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 11:41:24 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 11:44:47 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:44:49 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 11:44:49 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 11:44:53 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 11:46:12 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 11:46:14 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 11:46:14 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 11:46:16 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:03:13 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:03:15 INFO  AddProductToCard:47 - The Item was successfully selected
+2024-01-12 12:03:16 INFO  AddProductToCard:53 - (44, 36)
+2024-01-12 12:03:17 INFO  AddProductToCard:71 - Product was successfully added to cart
+2024-01-12 12:03:20 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:07:22 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:07:25 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:07:26 INFO  AddProductToCard:70 - Product was successfully added to cart
+2024-01-12 12:07:29 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:08:05 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:08:07 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:08:09 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:26:37 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:26:40 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:26:41 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:26:44 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:28:02 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:28:04 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:28:06 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:29:08 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:30:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:30:18 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:30:19 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:31:25 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:31:27 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:31:28 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:32:33 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:32:35 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:32:36 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:33:20 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:33:22 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:33:24 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:34:47 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:35:03 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:35:05 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:35:07 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:36:09 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 12:39:01 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 12:39:03 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 12:39:05 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 12:40:07 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:34:37 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:34:39 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:34:41 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:35:43 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:37:10 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:37:12 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:37:14 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:38:05 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:38:07 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:38:09 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:39:11 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:45:09 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:45:11 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:45:13 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:45:50 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:45:53 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:45:54 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:45:55 INFO  DeleteProductFromCard:34 - The Item was successfully deleted from card
+2024-01-12 15:45:57 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:46:37 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:46:39 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:46:41 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:46:42 INFO  DeleteProductFromCard:34 - The Item was successfully deleted from card
+2024-01-12 15:46:49 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:55:10 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:55:12 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:55:13 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:55:15 INFO  DeleteProductFromCard:34 - The Item was successfully deleted from card
+2024-01-12 15:55:22 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:55:58 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:56:00 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:56:02 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:56:23 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 15:58:21 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 15:58:23 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 15:58:24 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 15:58:46 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:00:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:00:09 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:00:11 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:04:44 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:04:46 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:04:47 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:05:09 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:05:32 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:05:34 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:05:36 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:05:57 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:07:31 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:07:33 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:07:35 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:07:36 INFO  DeleteProductFromCard:30 - The Item was successfully deleted from card
+2024-01-12 16:07:40 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:08:20 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:08:23 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:08:24 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:08:25 INFO  DeleteProductFromCard:30 - The Item was successfully deleted from card
+2024-01-12 16:08:29 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:12:36 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:12:43 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:12:45 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:12:46 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 16:12:50 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:13:35 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:13:42 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:13:43 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:13:45 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 16:13:47 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:14:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:14:14 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:14:15 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:14:16 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 16:14:19 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:15:52 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:15:59 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:16:00 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:16:35 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:16:42 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 16:16:43 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 16:16:44 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 16:16:48 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:17:11 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:17:11 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:18:03 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:18:26 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:56:29 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 16:56:51 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 16:57:25 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:00:38 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:01:12 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:01:14 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 17:01:16 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 17:01:17 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 17:01:21 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 17:03:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:03:10 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 17:03:11 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 17:03:12 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 17:03:16 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 17:03:46 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:03:48 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 17:03:50 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 17:03:51 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 17:03:55 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 17:04:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:04:29 INFO  AfterHook:16 - Driver was closed
+
+2024-01-12 17:08:05 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-12 17:08:07 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-12 17:08:08 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-12 17:08:10 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-12 17:08:14 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 12:46:36 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 12:47:02 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 12:50:55 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 12:51:33 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 13:04:10 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 13:04:32 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 15:15:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 15:15:56 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 15:17:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 15:17:38 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 15:19:27 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 15:20:30 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 15:22:14 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 15:23:17 INFO  UserLoginPage:63 - Login failed
+2024-01-16 15:23:38 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 15:39:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 15:39:14 INFO  UserLoginPage:59 - Login successful
+2024-01-16 15:39:14 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-16 15:39:16 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-16 15:39:17 INFO  DeleteProductFromCard:26 - The Item was successfully deleted from card
+2024-01-16 15:39:21 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 17:40:00 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:40:02 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:40:02 INFO  AddProductToCard:49 - The Item was successfully selected
+2024-01-16 17:40:04 INFO  AddProductToCard:67 - The product was successfully added to cart
+2024-01-16 17:40:05 INFO  DeleteProductFromCard:48 - The product was successfully deleted
+2024-01-16 17:40:09 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 17:41:30 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:41:32 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:41:32 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 17:41:33 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 17:41:35 INFO  DeleteProductFromCard:48 - The item was successfully deleted
+2024-01-16 17:41:38 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 17:43:16 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:43:18 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:44:22 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:44:24 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:44:24 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 17:44:26 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 17:45:17 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-16 17:45:39 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:45:41 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:45:41 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 17:45:42 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 17:53:31 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-16 17:54:04 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:54:06 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:54:06 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 17:54:08 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 17:54:09 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-16 17:54:13 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 17:54:42 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:54:43 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:54:44 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 17:54:45 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 17:55:17 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 17:56:35 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 17:56:39 INFO  UserLoginPage:55 - Login successful
+2024-01-16 17:56:39 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 17:56:40 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 17:56:42 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-16 17:56:45 INFO  AfterHook:16 - Driver was closed
+
+2024-01-16 20:18:41 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-16 20:18:43 INFO  UserLoginPage:55 - Login successful
+2024-01-16 20:18:43 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-16 20:18:44 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-16 20:18:46 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-16 20:18:50 INFO  AfterHook:16 - Driver was closed
+
+2024-01-17 11:14:44 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-17 11:14:46 INFO  UserLoginPage:55 - Login successful
+2024-01-17 11:14:46 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-17 11:14:48 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-17 11:14:49 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-17 11:14:53 INFO  AfterHook:16 - Driver was closed
+
+2024-01-17 11:15:07 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-17 11:15:10 INFO  UserLoginPage:55 - Login successful
+2024-01-17 11:15:10 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-17 11:15:12 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-17 11:15:13 INFO  DeleteProductFromCard:42 - The item was successfully deleted
+2024-01-17 11:15:17 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 11:14:36 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 11:14:43 INFO  UserLoginPage:55 - Login successful
+2024-01-18 11:14:43 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 11:14:44 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 11:15:16 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 11:16:55 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 11:16:57 INFO  UserLoginPage:55 - Login successful
+2024-01-18 11:16:58 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 11:16:59 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 11:17:26 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 11:18:28 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 11:18:31 INFO  UserLoginPage:55 - Login successful
+2024-01-18 11:18:32 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 11:18:35 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 11:18:41 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 11:20:34 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 11:20:37 INFO  UserLoginPage:55 - Login successful
+2024-01-18 11:20:37 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 11:20:39 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 11:20:42 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 11:23:14 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 11:23:20 INFO  UserLoginPage:55 - Login successful
+2024-01-18 11:23:21 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 11:23:22 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 11:23:26 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 16:16:56 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 16:16:59 INFO  UserLoginPage:55 - Login successful
+2024-01-18 16:16:59 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 16:17:01 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 16:17:04 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 16:17:43 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 16:17:45 INFO  UserLoginPage:55 - Login successful
+2024-01-18 16:17:45 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 16:17:47 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 16:17:50 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 17:24:32 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 17:24:34 INFO  UserLoginPage:55 - Login successful
+2024-01-18 17:24:35 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 17:24:37 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 17:24:42 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 17:25:24 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 17:25:26 INFO  UserLoginPage:55 - Login successful
+2024-01-18 17:25:27 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 17:25:28 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 17:25:41 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 17:26:13 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 17:26:15 INFO  UserLoginPage:55 - Login successful
+2024-01-18 17:26:16 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 17:26:17 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 17:26:21 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 17:30:02 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 17:30:04 INFO  UserLoginPage:55 - Login successful
+2024-01-18 17:30:04 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 17:30:06 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 17:30:10 INFO  AfterHook:16 - Driver was closed
+
+2024-01-18 17:35:47 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-18 17:35:49 INFO  UserLoginPage:55 - Login successful
+2024-01-18 17:35:50 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-18 17:35:51 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-18 17:35:55 INFO  AfterHook:16 - Driver was closed
+
+2024-01-22 17:51:19 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-22 17:51:21 INFO  UserLoginPage:55 - Login successful
+2024-01-22 17:51:21 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-22 17:51:23 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-22 17:51:24 INFO  AfterHook:16 - Driver was closed
+
+2024-01-22 17:52:01 INFO  BeforeHook:17 - Driver was initiated successfully
+2024-01-22 17:52:04 INFO  UserLoginPage:55 - Login successful
+2024-01-22 17:52:04 INFO  AddProductToCard:49 - The item was successfully selected
+2024-01-22 17:52:06 INFO  AddProductToCard:67 - The item was successfully added to cart
+2024-01-22 17:52:09 INFO  AfterHook:16 - Driver was closed
+
