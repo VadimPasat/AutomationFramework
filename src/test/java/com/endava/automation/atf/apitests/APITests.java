@@ -44,8 +44,6 @@ public class APITests {
                 .statusCode(201).log().all();
     }
 
-
-
     @Test
     public void putTest() {
         given()
