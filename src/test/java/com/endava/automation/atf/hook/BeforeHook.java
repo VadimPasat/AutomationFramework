@@ -11,7 +11,7 @@ public class BeforeHook {
 
     WebDriverManager driverManager = new WebDriverManager();
 
-    @Before
+    @Before("@BeforeHook")
     public void setUp() {
         WebDriver driver = driverManager.getDriver();
         log.info("Driver was initiated successfully");

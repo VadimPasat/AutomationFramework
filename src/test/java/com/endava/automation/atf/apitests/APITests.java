@@ -16,7 +16,7 @@ public class APITests {
     int randomNumber = random.nextInt(10) + 1;
 
     @Test
-    public void test1() {
+    public void getTest() {
         Response response = get("https://reqres.in/api/users?page=21111111");
         System.out.println("Status Code : " + response.getStatusCode());
         System.out.println("Body : " + response.getBody().asString());
@@ -29,12 +29,12 @@ public class APITests {
 
 
     @Test
-    public void test2() {
+    public void getTestUsingRestAssured() {
         given().get("https://reqres.in/api/users?page=" + randomNumber).then().statusCode(200).log().all();
     }
 
     @Test
-    public void test3() {
+    public void postTest() {
         given()
                 .contentType(ContentType.JSON)
                 .body("{ \"name\": \"morpheus\", \"job\": \"leader\" }")
