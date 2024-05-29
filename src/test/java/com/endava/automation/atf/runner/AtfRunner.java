@@ -10,9 +10,10 @@ import org.junit.runner.RunWith;
         strict = true,
         junit = "--step-notifications",
         glue = {"com/endava/automation/atf/stepdef",
+                "com/endava/automation/atf/apitests",
                 "com/endava/automation/atf/hook"},
         features = {"src/test/java/com/endava/automation/atf/features"},
-        tags = {"@Run", "@VadimP"}
+        tags = {"@Run"}
 )
 public class AtfRunner {
 

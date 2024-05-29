@@ -4,6 +4,7 @@ import com.endava.automation.atf.constant.Users;
 import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.page.UserHomePage;
 import com.endava.automation.atf.page.UserLoginPage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class LoginSteps {
         scenarioContext.saveData("userHomePage", userHomePage);
     }
 
-    @Then("{} logs out")
+    @And("{} logs out")
     public void logoutPage(Users user) throws InterruptedException {
         userLoginPage.userLogout(user);
         log.info(user + " user successfully logs out");

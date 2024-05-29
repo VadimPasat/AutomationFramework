@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 @Log4j
 public class AfterHook {
 
-    @After
+    @After("@AfterHook")
     public void after() {
         ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
         WebDriver driver = (WebDriver) scenarioContext.getData("driver");
