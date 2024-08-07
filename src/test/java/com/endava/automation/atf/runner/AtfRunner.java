@@ -6,7 +6,12 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},// "json:build/cucumber-reports/cucumber.json","rerun:build/cucumber-reports/rerun.txt"
+        plugin = {
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+                //"json:build/cucumber-reports/cucumber.json",
+                //"rerun:build/cucumber-reports/rerun.txt",
+                //"html:build/cucumber-reports/cucumber-html-report.html"
+        },
         strict = true,
         junit = "--step-notifications",
         glue = {"com/endava/automation/atf/stepdef",
@@ -16,5 +21,4 @@ import org.junit.runner.RunWith;
         tags = {"@Run"}
 )
 public class AtfRunner {
-
 }

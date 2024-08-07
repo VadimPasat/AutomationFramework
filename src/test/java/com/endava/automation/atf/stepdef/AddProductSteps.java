@@ -14,8 +14,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertTrue;
-
 @Getter
 @Log4j
 public class AddProductSteps {
@@ -45,12 +43,11 @@ public class AddProductSteps {
         log.info("All the items were successfully added to cart");
     }
 
-    @Then("^Delete product(?:s) from card$")
+    @Then("^Delete product(?:s)? from card$")
     public void deleteProductFromCard() throws InterruptedException, IOException {
         CreateFolder.createFolder(deleteProductFromCard.getFolder());
-        //deleteProductFromCard.makeElementScreenShot(deleteProductFromCard.getDeleteButton());
+        deleteProductFromCard.makeElementScreenShot(deleteProductFromCard.getDeleteButton());
         deleteProductFromCard.deleteProductFromCard();
-        scenarioContext.saveData("deleteProductFromCard", deleteProductFromCard);
         log.info("All the items were successfully deleted");
     }
 }
