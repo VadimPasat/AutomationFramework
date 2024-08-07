@@ -33,7 +33,6 @@ public class LoginSteps {
     public void homePageIsDisplayed() throws InterruptedException {
         UserHomePage userHomePage = new UserHomePage(webDriver);
         assertEquals(userLoginPage.getAssertThatImLoggedIn().getText(), SUCCESSFUL_LOGIN.getMessage());
-        scenarioContext.saveData("userHomePage", userHomePage);
     }
 
     @And("{} logs out")

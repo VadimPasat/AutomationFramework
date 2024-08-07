@@ -4,19 +4,19 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import lombok.Getter;
 import org.junit.Assert;
 import lombok.extern.log4j.Log4j;
 
 import static io.restassured.RestAssured.get;
 
 @Log4j
+@Getter
 public class ApiGetRequestSteps {
 
 
     private String endpoint;
     private Response response;
-
-    APITests APITests = new APITests();
 
     @Given("a user API endpoint {string}")
     public void setUserAPIEndpoint(String url) {

@@ -4,13 +4,16 @@ import com.endava.automation.atf.datagenerator.DataGenerator;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import static org.junit.Assert.assertNotNull;
@@ -23,7 +26,13 @@ public class DeleteProductFromCard extends AbstractPage {
     protected final AddProductToCard addProductToCard = new AddProductToCard(super.getDriver());
 
     // Find all product elements
-    List<WebElement> products = super.getDriver().findElements(By.xpath("//*[contains(@id, 'add-to-cart')]"));
+   // List<WebElement> products = super.getDriver().findElements(By.xpath("//*[contains(@id, 'add-to-cart')]"));
+
+    @FindAll({
+            @FindBy(xpath = "//*[contains(@id, 'add-to-cart')]")
+    })
+    List<WebElement> products;
+
     // Generate a random index within the products list size
     Random random = new Random();
     int randomIndex = random.nextInt(products.size());
@@ -42,20 +51,21 @@ public class DeleteProductFromCard extends AbstractPage {
 
     public void deleteProductFromCard() throws InterruptedException, IOException {
         wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
-       makeElementScreenShot(deleteButton);
+        makeElementScreenShot(deleteButton);
         while (isElementDisplayed(emptyShoppingCart)) {
             deleteButton.click();
             //assertNotNull("Failed to delete the item from cart", randomProduct);
-            Thread.sleep(600);
+            log.info("Deleting the items from the cart");
         }
-        makeFullPageShot();
+        //makeFullPageShot();
     }
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            emptyShoppingCart.isDisplayed();
-            return element != null;
+            return element != null && element.isDisplayed();
         } catch (org.openqa.selenium.NoSuchElementException e) {
+            //log.error("Element not found: " + e.getMessage());
+            log.info("No more items to be deleted");
             return false;
         }
     }

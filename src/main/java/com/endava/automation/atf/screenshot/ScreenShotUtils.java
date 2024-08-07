@@ -49,7 +49,7 @@ public class ScreenShotUtils {
         }
     }
 
-    //screen shot with bordered element
+    //screenshot with bordered element
     public static void takeFullPageShotWithBorderedElement(String folderName, WebDriver driver, WebElement element)
             throws IOException {
         if (configReader.confirmScreenShot()) {

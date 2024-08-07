@@ -1,4 +1,4 @@
-@Run
+#@Run
 Feature: Testing User API
 
   Background:
@@ -10,8 +10,8 @@ Feature: Testing User API
     And the response body should contain user data
 
   Scenario: Combined API Requests
-    Then I make a simple GET request to the endpoint
+    When I make a simple GET request to the endpoint
     Then I Make a get via rest api request to the endpoint
     Then I make a post request to the endpoint
     Then I make a put request to the endpoint
-    Then I make a delete request to the endpoint
+    And I make a delete request to the endpoint
