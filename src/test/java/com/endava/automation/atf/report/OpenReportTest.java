@@ -1,4 +1,4 @@
-package com.endava.automation.atf;
+package com.endava.automation.atf.report;
 
 import org.junit.Test;
 

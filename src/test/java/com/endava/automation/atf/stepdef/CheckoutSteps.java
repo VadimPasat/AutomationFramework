@@ -24,17 +24,15 @@ public class CheckoutSteps {
     @Then("Press on Checkout button")
     public void pressOnCheckoutButton() throws InterruptedException, IOException {
         checkoutProduct.checkoutButton();
-        scenarioContext.saveData("checkoutButton", checkoutProduct);
     }
+
     @And("Fill checkout information fields")
     public void fillCheckoutFields() throws InterruptedException, IOException {
         checkoutProduct.fillFormFromCSV();
-        scenarioContext.saveData("checkoutInformation", checkoutProduct);
     }
 
     @Then("Finish checkout")
     public void finishCheckout() throws InterruptedException, IOException {
         checkoutProduct.finishCheckout();
-        scenarioContext.saveData("checkoutInformation", checkoutProduct);
     }
 }

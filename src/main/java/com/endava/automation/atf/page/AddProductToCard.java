@@ -64,7 +64,7 @@ public class AddProductToCard extends AbstractPage {
 
     public void selectRandomProduct(int numberOfItems) throws IOException {
         Random random = new Random();
-        this.numberOfItems = numberOfItems;
+
         if (totalNumberOfProducts.size() < numberOfItems) {
             log.error("The maximum number of items on the online shopping page are: " + totalNumberOfProducts.size());
             numberOfItems = totalNumberOfProducts.size();
@@ -79,7 +79,8 @@ public class AddProductToCard extends AbstractPage {
             log.info("Product " + product + " is selected");
         }
         log.info("The number of products that were added to the cart are: " + numberOfItems);
-        //makeFullPageShot();
+        makeFullPageShot();
+        this.numberOfItems = numberOfItems;
     }
 
     public void clickOnShoppingCard() throws InterruptedException, IOException {
@@ -94,6 +95,6 @@ public class AddProductToCard extends AbstractPage {
         String cartItemCount = cartIcon.getText(); // Get the cart item count text
         assertEquals("Failed to add one or more products to card", Integer.parseInt(cartItemCount), numberOfItems);
         log.info("The number of items successfully validated");
-        // makeFullPageShot();
+        makeFullPageShot();
     }
 }

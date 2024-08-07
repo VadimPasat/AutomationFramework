@@ -90,7 +90,6 @@ public class CheckoutProduct extends AbstractPage {
         log.info("Fill the Last Name with the value:" + randomIndex.get(1));
         postalCodeForm.sendKeys(randomIndex.get(2));
         log.info("Fill the Post Code with the value:" + randomIndex.get(2));
-        Thread.sleep(1000);
     }
 
     public void finishCheckout() throws InterruptedException, IOException {
@@ -105,7 +104,6 @@ public class CheckoutProduct extends AbstractPage {
         BackHomeButton.click();
         wait.until(ExpectedConditions.visibilityOf(AppLogo));
         log.info("Back on home page");
-        Thread.sleep(1000);
     }
 }
 

@@ -12,6 +12,7 @@ import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
 
 import static com.endava.automation.atf.constant.Messages.SUCCESSFUL_LOGIN;
+import static com.endava.automation.atf.constant.Messages.USERNAME_WARNING_MESSAGE;
 import static org.junit.Assert.assertEquals;
 
 @Getter
@@ -31,8 +32,14 @@ public class LoginSteps {
 
     @Then("Home page is displayed")
     public void homePageIsDisplayed() throws InterruptedException {
-        UserHomePage userHomePage = new UserHomePage(webDriver);
+        // UserHomePage userHomePage = new UserHomePage(webDriver);
         assertEquals(userLoginPage.getAssertThatImLoggedIn().getText(), SUCCESSFUL_LOGIN.getMessage());
+    }
+
+    @Then("Enter wrong username")
+    public void incorrectUsername() throws InterruptedException {
+        UserHomePage userHomePage = new UserHomePage(webDriver);
+        assertEquals(userLoginPage.getAssertThatImLoggedIn().getText(), USERNAME_WARNING_MESSAGE.getMessage());
     }
 
     @And("{} logs out")
