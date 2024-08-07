@@ -16,7 +16,7 @@ public class LoginTest {
     @Given("I am on the SauceDemo login page")
     public void iAmOnLoginPage() throws InterruptedException {
 
-        //System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
         Thread.sleep(2000);

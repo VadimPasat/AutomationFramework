@@ -1,9 +1,7 @@
 package com.endava.automation.atf.apitests;
 
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.junit.Assert;
@@ -16,7 +14,7 @@ public class ApiCombinedRequestsSteps {
 
     APITests apiTests = new APITests();
 
-    @Then("I make a simple GET request to the endpoint")
+    @When("I make a simple GET request to the endpoint")
     public void makeGETRequestToEndpoint() {
         apiTests.getTest();
         log.info("Get request was executed");
@@ -40,7 +38,7 @@ public class ApiCombinedRequestsSteps {
         log.info("Put request using rest assured was executed");
     }
 
-    @Then("I make a delete request to the endpoint")
+    @And("I make a delete request to the endpoint")
     public void makeDeleteRequestToEndpointUsingRestAssured() {
         apiTests.deleteTest();
         log.info("Put request using rest assured was executed");

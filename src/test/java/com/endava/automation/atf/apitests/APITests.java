@@ -59,35 +59,4 @@ public class APITests {
     public void deleteTest() {
         given().delete("https://reqres.in/api/users/" + randomNumber).then().statusCode(204).log().all();
     }
-
-
-
-//    @Test
-//    public void testPostAndGetUser() {
-//        // Create a new user with POST request
-//        String createUserResponse =
-//                given()
-//                        .contentType(ContentType.JSON)
-//                        .body("{ \"name\": \"morpheus\", \"job\": \"leader\" }")
-//                        .when()
-//                        .post("https://reqres.in/api/users")
-//                        .then()
-//                        .statusCode(201)
-//                        .extract()
-//                        .response()
-//                        .asString();
-//
-//        // Extract the ID of the created user from the response
-//        String userIdString = createUserResponse.split("\"id\":")[1].split(",")[0].replaceAll("[^0-9]", "");
-//        int userId = Integer.parseInt(userIdString);
-//
-//        // Retrieve the details of the created user with a GET request
-//        given()
-//                .pathParam("userId", userId)
-//                .when()
-//                .get("https://reqres.in/api/users/{userId}")
-//                .then()
-//                .statusCode(200)
-//                .log().all();
-//    }
 }

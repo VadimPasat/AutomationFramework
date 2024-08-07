@@ -1,6 +1,6 @@
-#@BeforeHook
-#@Run
-#@AfterHook
+@BeforeHook
+@Run
+@AfterHook
 Feature: Login
 
   Background:
@@ -8,14 +8,16 @@ Feature: Login
     Then Home page is displayed
 
   Scenario: Add an product to card and remove it
-    When Select random 10 of products
-    And Product was added successfully
-    Then Delete product from card
+    When Select 3 random products
+    Then Access the cart
+    And Check if the products were added successfully
+    Then Delete products from card
     And STANDARD_USER logs out
 
   Scenario: Add an product to card and checkout
-    When Select random 5 of products
-    And Product was added successfully
+    When Select 3 random products
+    Then Access the cart
+    And Check if the products were added successfully
     Then Press on Checkout button
     And Fill checkout information fields
     Then Finish checkout

@@ -14,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertTrue;
+
 @Getter
 @Log4j
 public class AddProductSteps {
@@ -24,29 +26,31 @@ public class AddProductSteps {
     private final AddProductToCard addProductToCard = new AddProductToCard(webDriver);
     private final DeleteProductFromCard deleteProductFromCard = new DeleteProductFromCard(webDriver);
 
-    @When("^Select random (\\d+) of products$")
+    @When("^Select (\\d+) random product(?:s)?$")
     public void selectItem(int numberOfProducts) throws InterruptedException, IOException {
         CreateFolder.createFolder(addProductToCard.getFolder());
         addProductToCard.selectRandomProduct(numberOfProducts);
-        scenarioContext.saveData("addProductToCard", addProductToCard);
     }
 
-    @And("Product was added successfully")
-    public void addProductToCard() throws InterruptedException, IOException {
+    @Then("Access the cart")
+    public void accessCart() throws IOException, InterruptedException {
         addProductToCard.clickOnShoppingCard();
-        scenarioContext.saveData("clickOnShoppingCard", addProductToCard);
         log.info("Shopping cart is displayed");
-        addProductToCard.checkCardQuantity();
         scenarioContext.saveData("checkCardQuantity", addProductToCard);
+    }
+
+    @And ("Check if the products were added successfully")
+    public void checkCardQuantity() throws IOException, InterruptedException {
+        addProductToCard.checkCardQuantity();
         log.info("All the items were successfully added to cart");
     }
 
-    @Then("Delete product from card")
+    @Then("^Delete product(?:s) from card$")
     public void deleteProductFromCard() throws InterruptedException, IOException {
         CreateFolder.createFolder(deleteProductFromCard.getFolder());
         //deleteProductFromCard.makeElementScreenShot(deleteProductFromCard.getDeleteButton());
         deleteProductFromCard.deleteProductFromCard();
         scenarioContext.saveData("deleteProductFromCard", deleteProductFromCard);
-        log.info("All the items were successfully deleted from card");
+        log.info("All the items were successfully deleted");
     }
 }
