@@ -4,7 +4,9 @@ public enum Users {
     STANDARD_USER("standard_user", "secret_sauce"),
     LOCKED_OUT_USER("locked_out_user", "secret_sauce"),
     PROBLEM_USER("problem_user", "secret_sauce"),
-    PERFORMANCE_GLITCH_USER("performance_glitch_user", "secret_sauce");
+    PERFORMANCE_GLITCH_USER("performance_glitch_user", "secret_sauce"),
+    WRONG_USERNAME ("wrong_username", "secret_sauce"),
+    WRONG_PASSWORD ("standard_user", "unsecret_sauce");
 
     private final String username;
     private final String password;

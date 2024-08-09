@@ -1,33 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extentreports>
     <configuration>
-        <!-- report theme -->
-        <!-- standard, dark -->
         <theme>dark</theme>
-        <!-- document encoding -->
-        <!-- defaults to UTF-8 -->
         <encoding>UTF-8</encoding>
-        <!-- protocol for script and stylesheets -->
-        <!-- defaults to https -->
-        <protocol>http</protocol>
-        <!-- title of the document -->
-        <documentTitle>"Team Tree" final task</documentTitle>
-        <!-- report name - displayed at top-nav -->
-        <reportName>OpenCart web application Test Report</reportName>
-        <!-- location of charts in the test view -->
-        <!-- top, bottom -->
+        <documentTitle>My Comprehensive Test Report</documentTitle>
+        <reportName>Automation Test Results</reportName>
         <testViewChartLocation>bottom</testViewChartLocation>
-        <!-- custom javascript -->
-        <scripts>
-            <![CDATA[
-$(document).ready(function() {
-});
-]]>
-        </scripts>
-        <!-- custom styles -->
+
         <styles>
             <![CDATA[
-]]>
+                /* Custom CSS for report styling */
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #222;
+                    color: #fff;
+                }
+                h1, h2, h3 {
+                    color: #007bff;
+                }
+                .extent-test-view .test-content {
+                    background-color: #333;
+                }
+            ]]>
         </styles>
+
+        <scripts>
+            <![CDATA[
+                /* Custom JavaScript for report interactivity */
+                $(document).ready(function() {
+                    // Example: Add a click event to a button
+                    $('#myCustomButton').click(function() {
+                        alert('Button clicked!');
+                    });
+                });
+            ]]>
+        </scripts>
+
+        <reportHierarchy>
+            <category name="Functional Tests">
+                <group name="Smoke Tests">
+                    <test name="Login Test"/>
+                    <test name="Homepage Test"/>
+                </group>
+                <group name="Regression Tests">
+                </group>
+            </category>
+            <category name="Performance Tests">
+            </category>
+        </reportHierarchy>
+
+        <systemInfo>
+            <entry key="Environment" value="Test Environment"/>
+            <entry key="Browser" value="Chrome"/>
+            <entry key="OS" value="Windows 10"/>
+        </systemInfo>
+
+        <attachments>
+            <file path="report_logo.png" type="image/png" name="Report Logo"/>
+            <file path="test_data.csv" type="text/csv" name="Test Data"/>
+        </attachments>
     </configuration>
 </extentreports>

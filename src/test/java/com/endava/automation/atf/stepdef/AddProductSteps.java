@@ -2,6 +2,7 @@ package com.endava.automation.atf.stepdef;
 
 
 import com.endava.automation.atf.context.ScenarioContext;
+import com.endava.automation.atf.page.AbstractPage;
 import com.endava.automation.atf.page.AddProductToCard;
 import com.endava.automation.atf.page.DeleteProductFromCard;
 import com.endava.automation.atf.screenshot.CreateFolder;
@@ -11,6 +12,7 @@ import io.cucumber.java.en.When;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
@@ -37,7 +39,7 @@ public class AddProductSteps {
         scenarioContext.saveData("checkCardQuantity", addProductToCard);
     }
 
-    @And ("Check if the products were added successfully")
+    @And("Check if the products were added successfully")
     public void checkCardQuantity() throws IOException, InterruptedException {
         addProductToCard.checkCardQuantity();
         log.info("All the items were successfully added to cart");

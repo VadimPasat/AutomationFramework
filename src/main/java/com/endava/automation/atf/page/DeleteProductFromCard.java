@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.IOException;
@@ -22,12 +23,11 @@ import static org.junit.Assert.assertNotNull;
 @Log4j
 public class DeleteProductFromCard extends AbstractPage {
 
+
+    private WebDriver driver;
     private final String folder = DataGenerator.folderNameGenerator();
-    protected final AddProductToCard addProductToCard = new AddProductToCard(super.getDriver());
 
-    // Find all product elements
-   // List<WebElement> products = super.getDriver().findElements(By.xpath("//*[contains(@id, 'add-to-cart')]"));
-
+    //Find all product elements
     @FindAll({
             @FindBy(xpath = "//*[contains(@id, 'add-to-cart')]")
     })
@@ -57,7 +57,7 @@ public class DeleteProductFromCard extends AbstractPage {
             //assertNotNull("Failed to delete the item from cart", randomProduct);
             log.info("Deleting the items from the cart");
         }
-        //makeFullPageShot();
+        makeFullPageShot();
     }
 
     public boolean isElementDisplayed(WebElement element) {
