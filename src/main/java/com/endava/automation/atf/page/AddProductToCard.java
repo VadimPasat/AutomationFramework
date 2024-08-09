@@ -23,11 +23,8 @@ import static org.junit.Assert.assertTrue;
 public class AddProductToCard extends AbstractPage {
 
     //private final String folder = DataGenerator.folderNameGenerator();
-
-    protected final UserHomePage adminDashboardPage = new UserHomePage(super.getDriver());
-
+    //protected final UserHomePage adminDashboardPage = new UserHomePage(super.getDriver());
     private int numberOfItems;
-
     // Find all product elements
     List<WebElement> products = super.getDriver().findElements(By.xpath("//*[contains(@id, 'add-to-cart')]"));
     // Generate a random index within the products list size

@@ -17,6 +17,7 @@ public abstract class AbstractPage {
     private final WebDriver driver;
     private final String folder = DataGenerator.folderNameGenerator();
 
+
     public AbstractPage(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
