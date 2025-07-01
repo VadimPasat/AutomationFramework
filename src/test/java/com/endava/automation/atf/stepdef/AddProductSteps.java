@@ -2,7 +2,6 @@ package com.endava.automation.atf.stepdef;
 
 
 import com.endava.automation.atf.context.ScenarioContext;
-import com.endava.automation.atf.page.AbstractPage;
 import com.endava.automation.atf.page.AddProductToCard;
 import com.endava.automation.atf.page.DeleteProductFromCard;
 import com.endava.automation.atf.screenshot.CreateFolder;
@@ -25,6 +24,7 @@ public class AddProductSteps {
     private final WebDriver webDriver = (WebDriver) scenarioContext.getData("driver");
     private final AddProductToCard addProductToCard = new AddProductToCard(webDriver);
     private final DeleteProductFromCard deleteProductFromCard = new DeleteProductFromCard(webDriver);
+
 
     @When("^Select (\\d+) random product(?:s)?$")
     public void selectItem(int numberOfProducts) throws InterruptedException, IOException {

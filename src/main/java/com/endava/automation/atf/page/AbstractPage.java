@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.time.Duration;
 
 @Getter
 public abstract class AbstractPage {
@@ -21,7 +22,17 @@ public abstract class AbstractPage {
     public AbstractPage(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver,30);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    }
+
+    public AddProductToCard AddProductToCard(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        return null;
+    }
+
+    public UserLoginPage UserLoginPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        return null;
     }
 
     public void makeScreenShot() throws IOException {

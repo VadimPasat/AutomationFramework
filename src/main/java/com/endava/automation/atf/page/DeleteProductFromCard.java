@@ -3,8 +3,6 @@ package com.endava.automation.atf.page;
 import com.endava.automation.atf.datagenerator.DataGenerator;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -14,48 +12,37 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Random;
-
-import static org.junit.Assert.assertNotNull;
 
 @Getter
 @Log4j
 public class DeleteProductFromCard extends AbstractPage {
 
-
-    private WebDriver driver;
     private final String folder = DataGenerator.folderNameGenerator();
 
-    //Find all product elements
     @FindAll({
-            @FindBy(xpath = "//*[contains(@id, 'add-to-cart')]")
+            @FindBy(css = ".inventory_item_name")
     })
-    List<WebElement> products;
-
-    // Generate a random index within the products list size
-    Random random = new Random();
-    int randomIndex = random.nextInt(products.size());
-    // Click on a random product
-    WebElement randomProduct = products.get(randomIndex);
+    List<WebElement> productName;
 
     @FindBy(xpath = "//*[starts-with(@id, 'remove-')]")
     private WebElement deleteButton;
+
 
     @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a/span")
     private WebElement emptyShoppingCart;
 
     public DeleteProductFromCard(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public void deleteProductFromCard() throws InterruptedException, IOException {
         wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
         makeElementScreenShot(deleteButton);
         while (isElementDisplayed(emptyShoppingCart)) {
+            String deletedProductName = productName.get(0).getText().trim();
+            log.info("Deleting " + deletedProductName + " from the cart");
             deleteButton.click();
-            //assertNotNull("Failed to delete the item from cart", randomProduct);
-            log.info("Deleting the items from the cart");
         }
         makeFullPageShot();
     }
@@ -64,7 +51,6 @@ public class DeleteProductFromCard extends AbstractPage {
         try {
             return element != null && element.isDisplayed();
         } catch (org.openqa.selenium.NoSuchElementException e) {
-            //log.error("Element not found: " + e.getMessage());
             log.info("No more items to be deleted");
             return false;
         }

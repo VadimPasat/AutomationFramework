@@ -6,3 +6,11 @@
 **/target/
 **/generated-sources/
 *.log
+/target/
+/build/
+/out/
+*.class
+.project
+.classpath
+.settings/
+target/
