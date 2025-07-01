@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
@@ -24,14 +25,17 @@ public class AddProductToCard extends AbstractPage {
 
     //private final String folder = DataGenerator.folderNameGenerator();
     //protected final UserHomePage adminDashboardPage = new UserHomePage(super.getDriver());
+
     private int numberOfItems;
-    // Find all product elements
-    List<WebElement> products = super.getDriver().findElements(By.xpath("//*[contains(@id, 'add-to-cart')]"));
-    // Generate a random index within the products list size
+    List<WebElement> products = this.getDriver().findElements(By.xpath("//*[contains(@id, 'add-to-cart')]"));
     Random random = new Random();
     int randomIndex = random.nextInt(products.size());
-    // Click on a random product
     WebElement randomProduct = products.get(randomIndex);
+
+    @FindAll({
+            @FindBy(css = ".inventory_item_name")
+    })
+    List<WebElement> productName;
 
     @FindBy(className = "btn_inventory")
     private WebElement randomIndexProduct;
@@ -55,13 +59,12 @@ public class AddProductToCard extends AbstractPage {
 
     public AddProductToCard(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
-
-    //List<WebElement> totalNumberOfProducts = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[contains(@id, 'add-to-cart')]")));
 
     public void selectRandomProduct(int numberOfItems) throws IOException {
         Random random = new Random();
-
+        log.info("Starting product selection process...");
         if (totalNumberOfProducts.size() < numberOfItems) {
             log.error("The maximum number of items on the online shopping page are: " + totalNumberOfProducts.size());
             numberOfItems = totalNumberOfProducts.size();
@@ -71,9 +74,11 @@ public class AddProductToCard extends AbstractPage {
             List<WebElement> products = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[contains(@id, 'add-to-cart')]")));
             int randomIndex = random.nextInt(products.size());
             WebElement randomProduct = products.get(randomIndex);
+
             randomProduct.click();
             int product = i + 1;
-            log.info("Product " + product + " is selected");
+
+            log.info("Product " + product + ": " + productName.get(product - 1).getText() + " is selected");
         }
         log.info("The number of products that were added to the cart are: " + numberOfItems);
         makeFullPageShot();

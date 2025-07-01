@@ -8,9 +8,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-                //"json:build/cucumber-reports/cucumber.json",
-                //"rerun:build/cucumber-reports/rerun.txt",
-                //"html:build/cucumber-reports/cucumber-html-report.html"
+                "json:build/cucumber-reports/cucumber.json",
+                "rerun:build/cucumber-reports/rerun.txt",
+                "html:build/cucumber-reports/cucumber-html-report.html"
         },
         strict = true,
         junit = "--step-notifications",
