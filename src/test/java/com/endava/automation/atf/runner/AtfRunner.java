@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
                 "json:feature/cucumber-reports/cucumber.json",
                 "rerun:feature/cucumber-reports/rerun.txt",
                 "html:feature/cucumber-reports/cucumber-html-report.html"
+
         },
         strict = true,
         junit = "--step-notifications",
