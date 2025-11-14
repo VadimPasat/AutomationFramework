@@ -51,7 +51,6 @@ public class AddProductToCart extends AbstractPage {
         super(driver);
     }
 
-
     /**
      * Selects a random set of products and adds them to the cart.
      * Returns the number actually added (may be less if not enough products).

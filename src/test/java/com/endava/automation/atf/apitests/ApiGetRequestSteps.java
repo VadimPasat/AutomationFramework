@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
-import static io.restassured.RestAssured.get;
+
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
