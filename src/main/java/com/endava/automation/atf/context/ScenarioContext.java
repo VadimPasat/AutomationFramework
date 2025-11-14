@@ -29,4 +29,10 @@ public class ScenarioContext {
     public void clearData() {
         context.clear();
     }
+
+    public Object getDataOrDefault(String key, Object defaultValue) {
+        Object value = getData(key);
+        return (value != null) ? value : defaultValue;
+    }
+
 }

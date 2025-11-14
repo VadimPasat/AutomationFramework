@@ -1,62 +1,83 @@
 package com.endava.automation.atf.apitests;
 
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class APITests {
 
-    Random random = new Random();
-    int randomNumber = random.nextInt(10) + 1;
+    // Prefer env vars; keep defaults for local runs
+    private static final String API_KEY  =
+            System.getenv().getOrDefault("API_KEY", "reqres-free-v1");
+    private static final String BASE_URL =
+            System.getenv().getOrDefault("BASE_URL", "https://reqres.in/api");
 
-    @Test
-    public void getTest() {
-        Response response = get("https://reqres.in/api/users?page=21111111");
-        System.out.println("Status Code : " + response.getStatusCode());
-        System.out.println("Body : " + response.getBody().asString());
-        System.out.println("Time taken : " + response.getTime());
-        System.out.println("Header : " + response.getHeader("content-type"));
+    private final Random random = new Random();
+    private final int randomNumber = random.nextInt(10) + 1;
 
-        int statusCode = response.getStatusCode();
-        Assert.assertEquals(statusCode, 200);
-    }
-
-
-    @Test
-    public void getTestUsingRestAssured() {
-        given().get("https://reqres.in/api/users?page=" + randomNumber).then().statusCode(200).log().all();
+    // <-- Runs whenever the class is loaded (Cucumber or JUnit)
+    static {
+        RestAssured.baseURI = BASE_URL;
+        RestAssured.requestSpecification = new RequestSpecBuilder()
+                .addHeader("x-api-key", API_KEY)
+                .setContentType(ContentType.JSON)
+                .build();
     }
 
     @Test
-    public void postTest() {
+    void getTest() {
+        Response response = get("/users?page=2");
+
+        assertEquals(200, response.statusCode());
+        System.out.println(response.prettyPrint());
+    }
+
+    @Test
+    void getTestUsingRestAssured() {
         given()
-                .contentType(ContentType.JSON)
+                .when()
+                .get("/users?page=" + randomNumber)
+                .then()
+                .statusCode(200)
+                .log().all();
+    }
+
+    @Test
+    void postTest() {
+        given()
                 .body("{ \"name\": \"morpheus\", \"job\": \"leader\" }")
                 .when()
-                .post("https://reqres.in/api/user")
+                .post("/users")
                 .then()
-                .statusCode(201).log().all();
+                .statusCode(201)
+                .log().all();
     }
 
     @Test
-    public void putTest() {
+    void putTest() {
         given()
-                .contentType(ContentType.JSON)
                 .body("{ \"name\": \"morpheus\", \"job\": \"zion resident\" }")
                 .when()
-                .put("https://reqres.in/api/users/" + randomNumber)
+                .put("/users/" + randomNumber)
                 .then()
-                .statusCode(200).log().all();
+                .statusCode(200)
+                .log().all();
     }
 
     @Test
-    public void deleteTest() {
-        given().delete("https://reqres.in/api/users/" + randomNumber).then().statusCode(204).log().all();
+    void deleteTest() {
+        when()
+                .delete("/users/" + randomNumber)
+                .then()
+                .statusCode(204)
+                .log().all();
     }
 }

@@ -1,25 +1,17 @@
 package com.endava.automation.atf.runner;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        plugin = {
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-                "json:target/cucumber-reports/cucumber.json",
-                "rerun:target/cucumber-reports/rerun.txt",
-                "html:target/cucumber-reports/cucumber-html-report.html"
+import static io.cucumber.junit.platform.engine.Constants.*;
 
-        },
-        strict = true,
-        junit = "--step-notifications",
-        glue = {"com/endava/automation/atf/stepdef",
-                "com/endava/automation/atf/apitests",
-                "com/endava/automation/atf/hook"},
-        features = {"src/test/java/com/endava/automation/atf/features"},
-        tags = {"@Run"}
-)
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("features")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME,
+        value = "com.endava.automation.atf.stepdef,com.endava.automation.atf.apitests,com.endava.automation.atf.hook")
+@ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@Run")
 public class AtfRunner {
 }

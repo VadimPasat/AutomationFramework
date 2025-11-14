@@ -2,7 +2,7 @@ package com.endava.automation.atf.page;
 
 import com.endava.automation.atf.datagenerator.DataGenerator;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 @Getter
-@Log4j
-public class DeleteProductFromCard extends AbstractPage {
+@Log4j2
+public class DeleteProductFromCart extends AbstractPage {
 
     private final String folder = DataGenerator.folderNameGenerator();
 
@@ -31,7 +31,7 @@ public class DeleteProductFromCard extends AbstractPage {
     @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a/span")
     private WebElement emptyShoppingCart;
 
-    public DeleteProductFromCard(WebDriver driver) {
+    public DeleteProductFromCart(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

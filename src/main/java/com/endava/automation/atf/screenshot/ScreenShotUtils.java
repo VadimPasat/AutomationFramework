@@ -4,7 +4,7 @@ package com.endava.automation.atf.screenshot;
 import com.endava.automation.atf.configreader.ConfigFileReader;
 import com.endava.automation.atf.datagenerator.DataGenerator;
 import com.endava.automation.atf.manager.FileReaderManager;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 
-@Log4j
+@Log4j2
 public class ScreenShotUtils {
 
     private static final ConfigFileReader configReader = FileReaderManager.getInstance().getConfigFileReader();

@@ -1,4 +1,4 @@
-#@Run
+@Run
 Feature: Testing User API
 
   Background:
@@ -11,7 +11,7 @@ Feature: Testing User API
 
   Scenario: Combined API Requests
     When I make a simple GET request to the endpoint
-    Then I Make a get via rest api request to the endpoint
-    Then I make a post request to the endpoint
-    Then I make a put request to the endpoint
-    And I make a delete request to the endpoint
+    Then I make a GET via REST API request to the endpoint
+    Then I make a POST request to the endpoint
+    Then I make a PUT request to the endpoint
+    And I make a DELETE request to the endpoint

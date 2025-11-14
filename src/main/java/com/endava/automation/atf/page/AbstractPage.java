@@ -25,7 +25,7 @@ public abstract class AbstractPage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    public AddProductToCard AddProductToCard(WebDriver driver) {
+    public AddProductToCart AddProductToCard(WebDriver driver) {
         PageFactory.initElements(driver, this);
         return null;
     }

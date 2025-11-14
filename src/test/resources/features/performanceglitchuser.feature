@@ -1,3 +1,6 @@
+@Run
+@BeforeHook
+@AfterHook
 Feature: Performance glitch user add and delete products from cart
 
   Background:
@@ -8,5 +11,5 @@ Feature: Performance glitch user add and delete products from cart
     When Select 4 random products
     Then Access the cart
     And Check if the products were added successfully
-    Then Delete products from card
+    Then Delete products from cart
     And PERFORMANCE_GLITCH_USER logs out

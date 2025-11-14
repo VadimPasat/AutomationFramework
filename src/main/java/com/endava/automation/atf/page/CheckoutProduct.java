@@ -3,7 +3,7 @@ package com.endava.automation.atf.page;
 
 import com.endava.automation.atf.datagenerator.DataGenerator;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 @Getter
-@Log4j
+@Log4j2
 public class CheckoutProduct extends AbstractPage {
 
     private final String folder = DataGenerator.folderNameGenerator();

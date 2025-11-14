@@ -1,46 +1,40 @@
 package com.endava.automation.atf.apitests;
 
 import io.cucumber.java.en.*;
+import lombok.extern.log4j.Log4j2;
 
-import io.cucumber.java.en.When;
-import io.restassured.response.Response;
-import org.junit.Assert;
-import lombok.extern.log4j.Log4j;
-
-import static io.restassured.RestAssured.get;
-
-@Log4j
+@Log4j2
 public class ApiCombinedRequestsSteps {
 
-    APITests apiTests = new APITests();
+    private final APITests apiTests = new APITests();
 
     @When("I make a simple GET request to the endpoint")
     public void makeGETRequestToEndpoint() {
         apiTests.getTest();
-        log.info("Get request was executed");
+        log.info("GET request executed");
     }
 
-    @Then("I Make a get via rest api request to the endpoint")
+    @Then("I make a GET via REST API request to the endpoint")
     public void makeGETRequestToEndpointUsingRestAssured() {
         apiTests.getTestUsingRestAssured();
-        log.info("Get request using rest assured was executed");
+        log.info("GET request using RestAssured executed");
     }
 
-    @Then("I make a post request to the endpoint")
+    @Then("I make a POST request to the endpoint")
     public void makePostRequestToEndpointUsingRestAssured() {
         apiTests.postTest();
-        log.info("Post request using rest assured was executed");
+        log.info("POST request using RestAssured executed");
     }
 
-    @Then("I make a put request to the endpoint")
+    @Then("I make a PUT request to the endpoint")
     public void makePutRequestToEndpointUsingRestAssured() {
         apiTests.putTest();
-        log.info("Put request using rest assured was executed");
+        log.info("PUT request using RestAssured executed");
     }
 
-    @And("I make a delete request to the endpoint")
+    @And("I make a DELETE request to the endpoint")
     public void makeDeleteRequestToEndpointUsingRestAssured() {
         apiTests.deleteTest();
-        log.info("Put request using rest assured was executed");
+        log.info("DELETE request using RestAssured executed");
     }
 }

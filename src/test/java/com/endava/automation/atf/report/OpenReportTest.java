@@ -1,6 +1,6 @@
 package com.endava.automation.atf.report;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.File;

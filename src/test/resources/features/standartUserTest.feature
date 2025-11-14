@@ -1,5 +1,5 @@
-@BeforeHook
 @Run
+@BeforeHook
 @AfterHook
 Feature: Products manipulation
 
@@ -11,7 +11,7 @@ Feature: Products manipulation
     When Select 20 random products
     Then Access the cart
     And Check if the products were added successfully
-    Then Delete products from card
+    Then Delete products from cart
     And STANDARD_USER logs out
 
   Scenario: Add an product to card and checkout

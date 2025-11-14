@@ -5,13 +5,13 @@ import com.endava.automation.atf.page.CheckoutProduct;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
 @Getter
-@Log4j
+@Log4j2
 public class CheckoutSteps {
 
     private final ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
