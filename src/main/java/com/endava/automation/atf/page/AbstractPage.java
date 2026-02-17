@@ -1,6 +1,8 @@
 package com.endava.automation.atf.page;
 
+import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.datagenerator.DataGenerator;
+import com.endava.automation.atf.screenshot.CreateFolder;
 import com.endava.automation.atf.screenshot.ScreenShot;
 import com.endava.automation.atf.screenshot.ScreenShotUtils;
 import lombok.Getter;
@@ -23,16 +25,6 @@ public abstract class AbstractPage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-    }
-
-    public AddProductToCart AddProductToCard(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        return null;
-    }
-
-    public UserLoginPage UserLoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        return null;
     }
 
     public void makeScreenShot() throws IOException {

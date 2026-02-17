@@ -4,18 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ScenarioContext {
+
+    private static final ThreadLocal<ScenarioContext> threadLocalContext = ThreadLocal.withInitial(ScenarioContext::new);
+
     private final Map<String, Object> context;
-    private static ScenarioContext scenarioContext;
 
     private ScenarioContext() {
-        context = new HashMap<String, Object>();
+        context = new HashMap<>();
     }
 
     public static ScenarioContext getScenarioContext() {
-        if (scenarioContext == null) {
-            scenarioContext = new ScenarioContext();
-        }
-        return scenarioContext;
+        return threadLocalContext.get();
     }
 
     public void saveData(String key, Object value) {
@@ -31,8 +30,6 @@ public class ScenarioContext {
     }
 
     public Object getDataOrDefault(String key, Object defaultValue) {
-        Object value = getData(key);
-        return (value != null) ? value : defaultValue;
+        return context.getOrDefault(key, defaultValue);
     }
-
 }

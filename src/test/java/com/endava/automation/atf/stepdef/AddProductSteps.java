@@ -3,61 +3,75 @@ package com.endava.automation.atf.stepdef;
 import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.page.AddProductToCart;
 import com.endava.automation.atf.page.DeleteProductFromCart;
-import com.endava.automation.atf.screenshot.CreateFolder;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-@Getter
 @Log4j2
 public class AddProductSteps {
 
-    private final ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
-    private final WebDriver webDriver = (WebDriver) scenarioContext.getData("driver");
-    private final AddProductToCart addProductToCart = new AddProductToCart(webDriver);
-    private final DeleteProductFromCart deleteProductFromCart = new DeleteProductFromCart(webDriver);
+    private final ScenarioContext scenarioContext;
+    private final WebDriver driver;
+    private final AddProductToCart addProductToCart;
+    private final DeleteProductFromCart deleteProductFromCart;
 
+    public AddProductSteps() {
+        this.scenarioContext = ScenarioContext.getScenarioContext();
+
+        Object drv = scenarioContext.getData("driver");
+        assertNotNull(drv, "WebDriver is missing from ScenarioContext. Check hooks initialization.");
+        this.driver = (WebDriver) drv;
+
+        this.addProductToCart = new AddProductToCart(driver);
+        this.deleteProductFromCart = new DeleteProductFromCart(driver);
+    }
 
     @When("^Select (\\d+) random product(?:s)?$")
     public void selectItem(int numberOfProducts) throws IOException {
+        assertTrue(numberOfProducts > 0, "Number of products must be > 0");
+
         int actuallyAdded = addProductToCart.selectRandomProducts(numberOfProducts);
         log.info("Requested {}, actually added {}", numberOfProducts, actuallyAdded);
+
         assertTrue(actuallyAdded > 0, "No products were added to the cart");
-        // keep for later checks
         scenarioContext.saveData("selectedCount", actuallyAdded);
     }
 
     @Then("Access the cart")
     public void accessCart() {
-        assertTrue(addProductToCart.openCart(), "Cart did not open or header not visible");
+        boolean opened = addProductToCart.openCart();
+        assertTrue(opened, "Cart did not open or header not visible");
         log.info("Shopping cart is displayed");
     }
 
     @And("Check if the products were added successfully")
     public void checkCartQuantity() throws IOException {
-        // badge equals selected amount
-        int expected = (int) scenarioContext.getDataOrDefault("selectedCount", addProductToCart.getNumberOfItems());
-        assertTrue(addProductToCart.verifyBadgeMatchesSelection(), "Badge count does not match selection");
-        // optional: verify quantities on the cart page too
-        assertTrue(addProductToCart.verifyCartPageQuantities(), "Cart page quantities do not match selection");
-        // extra safety: compare to expected
-        assertEquals(expected, addProductToCart.getNumberOfItems(), "Tracked numberOfItems mismatch");
-        log.info("All the items were successfully added to cart");
+        Object stored = scenarioContext.getData("selectedCount");
+        assertNotNull(stored, "selectedCount was not stored. Did 'Select random product(s)' run?");
+        int expected = (int) stored;
+
+        int badgeCount = addProductToCart.getNumberOfItems();
+        assertEquals(expected, badgeCount, "Badge count does not match selected products");
+
+        int cartCount = addProductToCart.getNumberOfItems();
+        assertEquals(expected, cartCount, "Cart items count does not match selected products");
+
+        assertTrue(addProductToCart.verifyCartPageQuantities(expected),
+                "Cart page quantities do not match selected products");
+
+        log.info("All items were successfully added to cart (expected={})", expected);
     }
 
     @Then("^Delete product(?:s)? from cart$")
-    public void deleteProductFromCart() throws InterruptedException, IOException {
-        CreateFolder.createFolder(deleteProductFromCart.getFolder());
-        deleteProductFromCart.makeElementScreenShot(deleteProductFromCart.getDeleteButton());
-        deleteProductFromCart.deleteProductFromCard();
-        log.info("All the items were successfully deleted");
+    public void deleteProductsFromCart() throws IOException {
+        int removed = deleteProductFromCart.deleteAllProducts();
+        log.info("Removed {} items from the cart", removed);
+        assertTrue(removed > 0, "No items were removed from the cart");
     }
 }

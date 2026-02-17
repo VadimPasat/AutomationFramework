@@ -15,6 +15,7 @@ public class AfterHook {
         ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
         WebDriver driver = (WebDriver) scenarioContext.getData("driver");
         driver.quit();
+        ScenarioContext.getScenarioContext().clearData();
         log.info("Driver was closed\n");
     }
 }

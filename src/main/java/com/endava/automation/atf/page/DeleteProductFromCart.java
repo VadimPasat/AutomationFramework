@@ -1,57 +1,97 @@
 package com.endava.automation.atf.page;
 
-import com.endava.automation.atf.datagenerator.DataGenerator;
-import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.io.IOException;
 import java.util.List;
 
-@Getter
 @Log4j2
 public class DeleteProductFromCart extends AbstractPage {
 
-    private final String folder = DataGenerator.folderNameGenerator();
+    // Names in cart page (for logging)
+    @FindBys(@FindBy(css = ".cart_item .inventory_item_name"))
+    private List<WebElement> productNames;
 
-    @FindAll({
-            @FindBy(css = ".inventory_item_name")
-    })
-    List<WebElement> productName;
+    // All remove buttons in cart
+    @FindBys(@FindBy(css = "button[id^='remove-']"))
+    private List<WebElement> removeButtons;
 
-    @FindBy(xpath = "//*[starts-with(@id, 'remove-')]")
-    private WebElement deleteButton;
-
-
-    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a/span")
-    private WebElement emptyShoppingCart;
+    // Cart badge (exists only when > 0 items)
+    @FindBy(css = ".shopping_cart_badge")
+    private WebElement cartBadge;
 
     public DeleteProductFromCart(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    public void deleteProductFromCard() throws InterruptedException, IOException {
-        wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
-        makeElementScreenShot(deleteButton);
-        while (isElementDisplayed(emptyShoppingCart)) {
-            String deletedProductName = productName.get(0).getText().trim();
-            log.info("Deleting " + deletedProductName + " from the cart");
-            deleteButton.click();
+    /**
+     * Deletes all products from the cart page.
+     * @return number of removed items
+     */
+    public int deleteAllProducts() {
+        int removed = 0;
+
+        // If there are no remove buttons, cart is already empty
+        while (true) {
+            if (removeButtons == null || removeButtons.isEmpty()) {
+                break;
+            }
+
+            try {
+                // Log first item name best-effort
+                if (productNames != null && !productNames.isEmpty()) {
+                    log.info("Deleting '{}' from the cart", productNames.get(0).getText().trim());
+                } else {
+                    log.info("Deleting an item from the cart");
+                }
+
+                WebElement btn = removeButtons.get(0);
+                wait.until(ExpectedConditions.elementToBeClickable(btn)).click();
+                removed++;
+
+                // Wait for DOM to update (button list shrinks or becomes stale)
+                wait.until(d -> {
+                    try {
+                        return removeButtons.isEmpty() || !btn.isDisplayed();
+                    } catch (StaleElementReferenceException e) {
+                        return true;
+                    } catch (Exception e) {
+                        return true;
+                    }
+                });
+
+            } catch (StaleElementReferenceException e) {
+                // DOM changed mid-iteration; retry loop
+            }
         }
-        makeFullPageShot();
+
+        // Optional: wait until badge disappears (means truly empty)
+        waitUntilCartBadgeDisappears();
+
+        log.info("Removed {} items from the cart", removed);
+        return removed;
     }
 
-    public boolean isElementDisplayed(WebElement element) {
+    private void waitUntilCartBadgeDisappears() {
         try {
-            return element != null && element.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            log.info("No more items to be deleted");
+            // badge disappears when cart empty; if it doesn't exist, this will throw -> handled
+            wait.until(ExpectedConditions.invisibilityOf(cartBadge));
+        } catch (Exception ignored) {
+            // already gone / not present — that's OK
+        }
+    }
+
+    // If you still need this helper elsewhere
+    public boolean isCartNotEmpty() {
+        try {
+            return cartBadge != null && cartBadge.isDisplayed();
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
