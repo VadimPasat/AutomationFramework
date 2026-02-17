@@ -55,11 +55,6 @@ public class ConfigFileReader {
         }
     }
 
-    public Boolean getBrowserWindowSize() {
-        String windowSize = properties.getProperty("windowMaximize");
-        return Boolean.valueOf(windowSize);
-    }
-
     public Boolean getHeadLessMode() {
         String headLessMode = properties.getProperty("headless");
         return Boolean.valueOf(headLessMode);
@@ -68,11 +63,6 @@ public class ConfigFileReader {
     public Boolean getWindowMaximize() {
         String windowMaximize = properties.getProperty("windowMaximize");
         return Boolean.valueOf(windowMaximize);
-    }
-
-    public Integer getImplicitWait() {
-        String implicitWait = properties.getProperty("windowMaximize");
-        return Integer.valueOf(implicitWait);
     }
 
     public String getScreenShotSaveDirectoryPath() {

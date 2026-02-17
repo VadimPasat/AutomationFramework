@@ -21,10 +21,10 @@ public abstract class AbstractPage {
     private final String folder = DataGenerator.folderNameGenerator();
 
 
-    public AbstractPage(final WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public void makeScreenShot() throws IOException {
@@ -42,5 +42,4 @@ public abstract class AbstractPage {
     public void borderTheElement(WebElement element) {
         ScreenShotUtils.borderElement(element, driver);
     }
-
 }

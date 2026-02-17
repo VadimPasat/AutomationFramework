@@ -15,7 +15,7 @@ import java.io.IOException;
 public class CheckoutSteps {
 
     private final ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
-    private final WebDriver webDriver = (WebDriver) scenarioContext.getData("driver");
+    private final WebDriver webDriver = (WebDriver) scenarioContext.getData("driver",WebDriver.class);
     private final CheckoutProduct checkoutProduct = new CheckoutProduct(webDriver);
 
     public CheckoutSteps() throws IOException {

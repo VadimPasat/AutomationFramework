@@ -35,7 +35,6 @@ public class APITests {
     @Test
     void getTest() {
         Response response = get("/users?page=2");
-
         assertEquals(200, response.statusCode());
         System.out.println(response.prettyPrint());
     }

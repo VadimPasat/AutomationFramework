@@ -9,16 +9,20 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class BeforeHook {
 
-    DriverFactory driverManager = new DriverFactory();
+    private static final String DRIVER_KEY = "driver";
+    private final DriverFactory driverManager = new DriverFactory();
 
     @Before("@BeforeHook")
     public void setUp() {
+        ScenarioContext.removeContext();
+
+        ScenarioContext context = ScenarioContext.getScenarioContext();
         WebDriver driver = driverManager.getDriver();
+
+        if (driver == null) {
+            throw new IllegalStateException("DriverFactory returned null WebDriver");
+        }
+        context.saveData(DRIVER_KEY, driver);
         log.info("Driver was initiated successfully");
-        ScenarioContext scenarioContext = ScenarioContext.getScenarioContext();
-        scenarioContext.saveData("driver", driver);
-//        WebDriver driver = driverManager.getDriver();
-//        log.info("Driver was initiated successfully");
-//        ScenarioContext.getScenarioContext().saveData("driver", driver);
     }
 }

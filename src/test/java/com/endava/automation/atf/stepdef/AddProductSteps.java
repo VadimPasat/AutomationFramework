@@ -23,8 +23,7 @@ public class AddProductSteps {
 
     public AddProductSteps() {
         this.scenarioContext = ScenarioContext.getScenarioContext();
-
-        Object drv = scenarioContext.getData("driver");
+        Object drv = scenarioContext.getData("driver", WebDriver.class);
         assertNotNull(drv, "WebDriver is missing from ScenarioContext. Check hooks initialization.");
         this.driver = (WebDriver) drv;
 
@@ -52,7 +51,7 @@ public class AddProductSteps {
 
     @And("Check if the products were added successfully")
     public void checkCartQuantity() throws IOException {
-        Object stored = scenarioContext.getData("selectedCount");
+        Object stored = scenarioContext.getData("selectedCount", Integer.class);
         assertNotNull(stored, "selectedCount was not stored. Did 'Select random product(s)' run?");
         int expected = (int) stored;
 

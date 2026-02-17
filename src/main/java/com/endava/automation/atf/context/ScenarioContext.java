@@ -1,35 +1,80 @@
 package com.endava.automation.atf.context;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ScenarioContext {
 
-    private static final ThreadLocal<ScenarioContext> threadLocalContext = ThreadLocal.withInitial(ScenarioContext::new);
+    private static final ThreadLocal<ScenarioContext> threadLocalContext =
+            ThreadLocal.withInitial(ScenarioContext::new);
 
     private final Map<String, Object> context;
 
     private ScenarioContext() {
-        context = new HashMap<>();
+        this.context = new ConcurrentHashMap<>();
     }
 
     public static ScenarioContext getScenarioContext() {
         return threadLocalContext.get();
     }
 
-    public void saveData(String key, Object value) {
+    public static void removeContext() {
+        threadLocalContext.remove(); // Prevent memory leaks
+    }
+
+    public <T> void saveData(String key, T value) {
+        validateKey(key);
         context.put(key, value);
     }
 
-    public Object getData(String key) {
-        return context.get(key);
+    public <T> T getData(String key, Class<T> type) {
+        validateKey(key);
+        Object value = context.get(key);
+
+        if (value == null) {
+            return null;
+        }
+
+        if (!type.isInstance(value)) {
+            throw new ClassCastException(
+                    "Expected type " + type.getName() +
+                            " but found " + value.getClass().getName()
+            );
+        }
+        return type.cast(value);
+    }
+
+    public <T> T getDataOrDefault(String key, T defaultValue, Class<T> type) {
+        validateKey(key);
+        Object value = context.getOrDefault(key, defaultValue);
+
+        if (!type.isInstance(value)) {
+            throw new ClassCastException(
+                    "Expected type " + type.getName() +
+                            " but found " + value.getClass().getName()
+            );
+        }
+        return type.cast(value);
+    }
+
+    public Optional<Object> getOptionalData(String key) {
+        validateKey(key);
+        return Optional.ofNullable(context.get(key));
     }
 
     public void clearData() {
         context.clear();
     }
 
-    public Object getDataOrDefault(String key, Object defaultValue) {
-        return context.getOrDefault(key, defaultValue);
+    public void reset() {
+        clearData();
+        removeContext();
+    }
+
+    private void validateKey(String key) {
+        if (key == null || key.trim().isEmpty()) {
+            throw new IllegalArgumentException("Context key cannot be null or empty");
+        }
     }
 }

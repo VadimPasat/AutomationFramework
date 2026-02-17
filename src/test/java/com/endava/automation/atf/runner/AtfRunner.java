@@ -10,8 +10,20 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME,
-        value = "com.endava.automation.atf.stepdef,com.endava.automation.atf.apitests,com.endava.automation.atf.hook")
+@ConfigurationParameter(
+        key = GLUE_PROPERTY_NAME,
+        value = "com.endava.automation.atf.stepdef," +
+                "com.endava.automation.atf.apitests," +
+                "com.endava.automation.atf.hook"
+)
 @ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@Run")
+@ConfigurationParameter(
+        key = PLUGIN_PROPERTY_NAME,
+        value = "pretty," +
+                "summary," +
+                "html:target/cucumber-report.html," +
+                "json:target/cucumber-report.json," +
+                "junit:target/cucumber-report.xml"
+)
 public class AtfRunner {
 }

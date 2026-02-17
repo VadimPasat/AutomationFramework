@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,14 +18,6 @@ import java.util.List;
 @Log4j2
 @Getter
 public class AddProductToCart extends AbstractPage {
-
-    // Names in cart page (for logging)
-    @FindBys(@FindBy(css = ".cart_item .inventory_item_name"))
-    private List<WebElement> productNames;
-
-    // All "Add to cart" buttons (SauceDemo uses ids starting with "add-to-cart-")
-    @FindBys(@FindBy(css = "button[id^='add-to-cart']"))
-    private List<WebElement> addToCartButtons;
 
     // Cart icon + (optional) badge
     @FindBy(css = ".shopping_cart_link")
@@ -45,46 +38,61 @@ public class AddProductToCart extends AbstractPage {
     @FindBys(@FindBy(css = ".cart_item"))
     private List<WebElement> cartItems;
 
+    // Names in cart page (for logging/verification on cart page)
+    @FindBys(@FindBy(css = ".cart_item .inventory_item_name"))
+    private List<WebElement> productNamesInCart;
+
+    // -------- Inventory page locators (used for add-to-cart flow) --------
+    private static final By INVENTORY_CARDS = By.cssSelector(".inventory_item");
+    private static final By INVENTORY_NAME_IN_CARD = By.cssSelector(".inventory_item_name");
+    private static final By ADD_TO_CART_IN_CARD = By.cssSelector("button[id^='add-to-cart']");
+
     public AddProductToCart(WebDriver driver) {
         super(driver);
     }
 
     /**
-     * Selects a random set of products and adds them to the cart.
+     * Selects a random set of products from the inventory page and adds them to the cart.
      * Returns the number actually added (may be less if not enough products).
+     *
+     * NOTE: This implementation reads the name from the same product card before clicking,
+     * avoiding the previous bug where the product name text was incorrectly used as a CSS selector.
      */
     public int selectRandomProducts(int requestedCount) {
         if (requestedCount <= 0) {
             throw new IllegalArgumentException("requestedCount must be > 0");
         }
 
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("button[id^='add-to-cart']")));
+        // Wait for inventory to be present
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(INVENTORY_CARDS));
 
-        if (addToCartButtons == null || addToCartButtons.isEmpty()) {
+        List<WebElement> cards = getDriver().findElements(INVENTORY_CARDS);
+        if (cards.isEmpty()) {
             log.warn("No products found to add.");
             return 0;
         }
 
-        int count = Math.min(requestedCount, addToCartButtons.size());
+        int count = Math.min(requestedCount, cards.size());
         if (count < requestedCount) {
             log.info("Requested {} items but only {} available. Using {}.",
-                    requestedCount, addToCartButtons.size(), count);
+                    requestedCount, cards.size(), count);
         }
 
-        List<WebElement> shuffled = new ArrayList<>(addToCartButtons);
-        Collections.shuffle(shuffled);
+        List<WebElement> shuffledCards = new ArrayList<>(cards);
+        Collections.shuffle(shuffledCards);
 
         for (int i = 0; i < count; i++) {
-            WebElement button = shuffled.get(i);
-            wait.until(ExpectedConditions.elementToBeClickable(button)).click();
+            WebElement card = shuffledCards.get(i);
 
-            // Best-effort logging of product name
             try {
-                WebElement card = button.findElement(By.xpath("./ancestor::div[contains(@class,'inventory_item')]"));
-                WebElement name = card.findElement(By.cssSelector(productNames.get(0).getText().trim()));
-                log.info("Added product '{}' ", name);
-            } catch (Exception ignore) {
+                String name = getProductNameFromCard(card);
+                WebElement addBtn = card.findElement(ADD_TO_CART_IN_CARD);
+
+                wait.until(ExpectedConditions.elementToBeClickable(addBtn)).click();
+                log.info("Added product {} ('{}')", i + 1, name);
+            } catch (Exception e) {
                 log.info("Added product {} (name not resolved)", i + 1);
+                log.debug("Failed to resolve name/click for product index {}", i + 1, e);
             }
         }
 
@@ -92,9 +100,6 @@ public class AddProductToCart extends AbstractPage {
         return count;
     }
 
-    /**
-     * Opens the cart and returns true if the cart header is visible.
-     */
     public boolean openCart() {
         wait.until(ExpectedConditions.elementToBeClickable(cartIcon)).click();
         try {
@@ -109,11 +114,9 @@ public class AddProductToCart extends AbstractPage {
 
     /**
      * Reads the cart badge (top-right). Returns the integer count or 0 if absent.
-     * (Renamed to match step-def usage.)
      */
     public int getBadgeCount() {
         try {
-            // badge element might not exist in DOM when empty; even if proxied, access may throw
             String txt = cartBadge.getText().trim();
             return txt.isEmpty() ? 0 : Integer.parseInt(txt);
         } catch (Exception e) {
@@ -129,7 +132,7 @@ public class AddProductToCart extends AbstractPage {
         try {
             wait.until(ExpectedConditions.visibilityOf(cartHeader));
         } catch (Exception ignore) {
-            // if header isn't visible, we still try to read the list; caller should ensure navigation
+            // caller should ensure navigation; we still return what we can
         }
         return cartItems == null ? 0 : cartItems.size();
     }
@@ -153,6 +156,7 @@ public class AddProductToCart extends AbstractPage {
                 }
             }
         }
+
         boolean ok = sum == expected;
         if (ok) {
             log.info("Cart page total quantity ({}) matches expected ({}).", sum, expected);
@@ -164,9 +168,7 @@ public class AddProductToCart extends AbstractPage {
 
     private String getProductNameFromCard(WebElement card) {
         try {
-            return card.findElement(By.cssSelector(".inventory_item_name"))
-                    .getText()
-                    .trim();
+            return card.findElement(INVENTORY_NAME_IN_CARD).getText().trim();
         } catch (Exception e) {
             return "Unknown product";
         }
