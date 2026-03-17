@@ -1,6 +1,4 @@
-@Run
-@BeforeHook
-@AfterHook
+@UI
 Feature: Products manipulation
 
   Background:
@@ -12,6 +10,7 @@ Feature: Products manipulation
     Then Access the cart
     And Check if the products were added successfully
     Then Delete products from cart
+    Then debug allure
     And STANDARD_USER logs out
 
   Scenario: Add an product to card and checkout

@@ -5,7 +5,6 @@ import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.page.UserHomePage;
 import com.endava.automation.atf.page.UserLoginPage;
 import com.endava.automation.atf.screenshot.CreateFolder;
-import com.endava.automation.atf.screenshot.ScreenShot;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
+import static com.endava.automation.atf.screenshot.ScreenshotUtils.takeScreenshot;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,8 +53,6 @@ public class LoginLogOutSteps {
 
         boolean loggedIn = userLoginPage.userLogin(user);
         assertTrue(loggedIn, "Login failed or Products page not visible");
-
-        //ScreenShot.makeScreenShot("Login_success", driver(), folderPath, null);
         log.info("{} successfully logged in", user);
     }
 
@@ -64,8 +62,8 @@ public class LoginLogOutSteps {
         if (folderPath == null) {
             folderPath = context().getData(FOLDER_KEY, String.class);
         }
-        //ScreenShot.makeScreenShot("Home_page", driver(), folderPath, null);
         log.info("Home page displayed successfully");
+        takeScreenshot("Cart_page", driver(), folderPath);
     }
 
     @Then("Enter wrong username")

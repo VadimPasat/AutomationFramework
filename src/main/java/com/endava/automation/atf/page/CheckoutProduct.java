@@ -2,6 +2,7 @@ package com.endava.automation.atf.page;
 
 
 import com.endava.automation.atf.datagenerator.DataGenerator;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -58,13 +59,14 @@ public class CheckoutProduct extends AbstractPage {
         super(driver);
     }
 
+    @Step("User is pressing on checkout button")
     public void checkoutButton() throws InterruptedException, IOException {
         wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
         checkoutButton.click();
         wait.until(ExpectedConditions.visibilityOf(firstNameForm));
         log.info("Checkout button was successfully pressed");
     }
-
+    @Step("User is filling up the form for checkout")
     public void fillFormFromCSV() throws IOException, InterruptedException {
         List<List<String>> records = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -91,7 +93,7 @@ public class CheckoutProduct extends AbstractPage {
         postalCodeForm.sendKeys(randomIndex.get(2));
         log.info("Fill the Post Code with the value:" + randomIndex.get(2));
     }
-
+    @Step("Finish checkout")
     public void finishCheckout() throws InterruptedException, IOException {
         wait.until(ExpectedConditions.elementToBeClickable(ContinueButton));
         ContinueButton.click();

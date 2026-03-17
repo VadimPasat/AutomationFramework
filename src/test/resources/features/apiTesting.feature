@@ -1,4 +1,4 @@
-#@Run
+
 Feature: Testing User API
 
   Background:

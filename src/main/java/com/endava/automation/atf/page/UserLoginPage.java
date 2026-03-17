@@ -1,6 +1,7 @@
 package com.endava.automation.atf.page;
 
 import com.endava.automation.atf.constant.Users;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.TimeoutException;
@@ -37,6 +38,7 @@ public class UserLoginPage extends AbstractPage {
     }
 
     /** Logs in and returns true if Products page is visible. */
+    @Step("Enter username: {username}")
     public boolean userLogin(Users user) {
         userNameField.clear();
         userNameField.sendKeys(user.getUsername());
@@ -52,7 +54,7 @@ public class UserLoginPage extends AbstractPage {
             return false;
         }
     }
-
+    @Step("User is logging out")
     public void userLogout(Users user) throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
         myAccountButton.click();

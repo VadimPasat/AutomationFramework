@@ -10,19 +10,43 @@ import org.openqa.selenium.WebDriver;
 public class BeforeHook {
 
     private static final String DRIVER_KEY = "driver";
-    private final DriverFactory driverManager = new DriverFactory();
+    private final DriverFactory driverFactory = new DriverFactory();
 
-    @Before("@BeforeHook")
-    public void setUp() {
+    /**
+     * 🔥 UI TESTS ONLY
+     */
+    @Before(value = "@UI", order = 0)
+    public void setUpUI() {
+
         ScenarioContext.removeContext();
-
         ScenarioContext context = ScenarioContext.getScenarioContext();
-        WebDriver driver = driverManager.getDriver();
+
+        WebDriver driver = driverFactory.getDriver();
 
         if (driver == null) {
             throw new IllegalStateException("DriverFactory returned null WebDriver");
         }
+
         context.saveData(DRIVER_KEY, driver);
-        log.info("Driver was initiated successfully");
+
+        log.info("UI Test → Driver initialized");
+    }
+
+    /**
+     * 🔥 API TESTS ONLY
+     */
+    @Before(value = "@API", order = 0)
+    public void setUpAPI() {
+
+        ScenarioContext.removeContext();
+        ScenarioContext context = ScenarioContext.getScenarioContext();
+
+        // NO WebDriver here
+        log.info("API Test → No browser started");
+
+        // aici poți adăuga:
+        // - base URI
+        // - auth tokens
+        // - headers
     }
 }

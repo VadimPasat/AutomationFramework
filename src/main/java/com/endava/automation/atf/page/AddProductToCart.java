@@ -1,5 +1,6 @@
 package com.endava.automation.atf.page;
 
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -58,6 +59,7 @@ public class AddProductToCart extends AbstractPage {
      * NOTE: This implementation reads the name from the same product card before clicking,
      * avoiding the previous bug where the product name text was incorrectly used as a CSS selector.
      */
+    @Step("Select a random product")
     public int selectRandomProducts(int requestedCount) {
         if (requestedCount <= 0) {
             throw new IllegalArgumentException("requestedCount must be > 0");
@@ -99,7 +101,7 @@ public class AddProductToCart extends AbstractPage {
         log.info("Total products added to cart: {}", count);
         return count;
     }
-
+    @Step("User is opening the cart")
     public boolean openCart() {
         wait.until(ExpectedConditions.elementToBeClickable(cartIcon)).click();
         try {
@@ -128,6 +130,7 @@ public class AddProductToCart extends AbstractPage {
      * Returns the count of items listed in the cart page.
      * Assumes you are already on the cart page.
      */
+    @Step("Extract number of items")
     public int getNumberOfItems() {
         try {
             wait.until(ExpectedConditions.visibilityOf(cartHeader));
@@ -141,6 +144,7 @@ public class AddProductToCart extends AbstractPage {
      * Verifies inside the cart page that total quantity equals expected.
      * SauceDemo typically has "1" per item, but this sums whatever is displayed.
      */
+    @Step("Verify the cart quantities")
     public boolean verifyCartPageQuantities(int expected) {
         int sum = 0;
 
@@ -165,7 +169,7 @@ public class AddProductToCart extends AbstractPage {
         }
         return ok;
     }
-
+    @Step("Get the product name")
     private String getProductNameFromCard(WebElement card) {
         try {
             return card.findElement(INVENTORY_NAME_IN_CARD).getText().trim();
