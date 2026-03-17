@@ -1,16 +1,49 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-*.iml
-.idea/
+# =========================
+# MAVEN / BUILD
+# =========================
+target/
 **/target/
+build/
+out/
 **/generated-sources/
-*.log
-/target/
-/build/
-/out/
-*.class
+
+# =========================
+# ALLURE
+# =========================
+allure-results/
+allure-report/
+.allure/
+
+# =========================
+# IDE (IntelliJ / Eclipse)
+# =========================
+.idea/
+*.iml
+workspace.xml
+shelf/
+
 .project
 .classpath
 .settings/
-target/
+
+# =========================
+# LOGS
+# =========================
+*.log
+
+# =========================
+# JAVA
+# =========================
+*.class
+
+# =========================
+# OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# TEMP FILES
+# =========================
+*.tmp
+*.temp
