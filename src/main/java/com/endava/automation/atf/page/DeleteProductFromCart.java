@@ -1,5 +1,6 @@
 package com.endava.automation.atf.page;
 
+import com.endava.automation.atf.utils.AllureUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -70,10 +71,7 @@ public class DeleteProductFromCart extends AbstractPage {
                 // DOM changed mid-iteration; retry loop
             }
         }
-
-        // Optional: wait until badge disappears (means truly empty)
         waitUntilCartBadgeDisappears();
-
         log.info("Removed {} items from the cart", removed);
         return removed;
     }

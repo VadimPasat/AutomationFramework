@@ -14,7 +14,7 @@
     <properties>
         <java.version>17</java.version>
 
-        <selenium.version>4.39.0</selenium.version>
+        <selenium.version>4.40.0</selenium.version>
         <junit.version>5.14.1</junit.version>
         <cucumber.version>7.31.0</cucumber.version>
         <allure.version>2.24.0</allure.version>

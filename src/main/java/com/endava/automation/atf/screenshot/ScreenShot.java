@@ -3,6 +3,8 @@ package com.endava.automation.atf.screenshot;
 import io.qameta.allure.Allure;
 import io.qameta.allure.AllureLifecycle;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -80,8 +82,6 @@ public final class ScreenShot {
                     new ByteArrayInputStream(bytes),
                     ".png");
 
-        } catch (IllegalStateException e) {
-            log.warn("No active Allure test → skipping attachment");
         } catch (Exception e) {
             log.error("Failed to attach screenshot", e);
         }

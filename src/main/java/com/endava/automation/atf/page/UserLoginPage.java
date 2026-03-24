@@ -4,15 +4,16 @@ import com.endava.automation.atf.constant.Users;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-@Log4j2
 @Getter
+@Log4j2
 public class UserLoginPage extends AbstractPage {
+
+    private LoginErrorComponent errorComponent;
 
     @FindBy(id = "user-name")
     private WebElement userNameField;
@@ -23,42 +24,43 @@ public class UserLoginPage extends AbstractPage {
     @FindBy(id = "login-button")
     private WebElement loginButton;
 
-    @FindBy(id = "react-burger-menu-btn")
-    private WebElement myAccountButton;
-
-    // Prefer stable CSS selector over brittle XPath
-    @FindBy(css = ".title")
-    private WebElement productsTitle;
-
-    @FindBy(id = "logout_sidebar_link")
-    private WebElement logoutButton;
-
     public UserLoginPage(WebDriver driver) {
         super(driver);
     }
 
-    /** Logs in and returns true if Products page is visible. */
-    @Step("Enter username: {username}")
-    public boolean userLogin(Users user) {
-        userNameField.clear();
-        userNameField.sendKeys(user.getUsername());
-        passwordField.clear();
-        passwordField.sendKeys(user.getPassword());
-        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
-
-        try {
-            // Wait until we see "Products" in the header
-            return wait.until(ExpectedConditions.textToBePresentInElement(productsTitle, "Products"));
-        } catch (TimeoutException e) {
-            log.info("Login failed or Products title not visible in time", e);
-            return false;
+    public LoginErrorComponent getErrorComponent() {
+        if (errorComponent == null) {
+            errorComponent = new LoginErrorComponent(driver);
         }
+        return errorComponent;
     }
-    @Step("User is logging out")
-    public void userLogout(Users user) throws InterruptedException {
-        wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
-        myAccountButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
-        logoutButton.click();
+
+    @Step("Enter username: {username}")
+    public UserLoginPage enterUsername(String username) {
+        userNameField.clear();
+        userNameField.sendKeys(username);
+        return this;
+    }
+
+    @Step("Enter password")
+    public UserLoginPage enterPassword(String password) {
+        passwordField.clear();
+        passwordField.sendKeys(password);
+        return this;
+    }
+
+    @Step("Click Login button")
+    public UserLoginPage clickLogin() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
+        return this;
+    }
+
+    @Step("Login with user: {user}")
+    public UserLoginPage login(Users user) {
+        enterUsername(user.getUsername());
+        enterPassword(user.getPassword());
+        clickLogin();
+        takeFullPageScreenshot("After_Login");
+        return this;
     }
 }

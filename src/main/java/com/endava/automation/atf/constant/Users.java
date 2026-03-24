@@ -1,7 +1,7 @@
 package com.endava.automation.atf.constant;
 
 public enum Users {
-    STANDARD_USER("1standard_user", "secret_sauce"),
+    STANDARD_USER("standard_user", "secret_sauce"),
     LOCKED_OUT_USER("locked_out_user", "secret_sauce"),
     PROBLEM_USER("problem_user", "secret_sauce"),
     PERFORMANCE_GLITCH_USER("performance_glitch_user", "secret_sauce"),

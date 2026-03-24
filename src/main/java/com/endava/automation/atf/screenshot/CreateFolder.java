@@ -12,7 +12,6 @@ public class CreateFolder {
 
     public CreateFolder() {
     }
-
     // creating the folder for holding pack of screenshots of one test run
     public static void createFolder(String folder) throws IOException {
         Files.createDirectories(Paths.get(FileReaderManager.getInstance()

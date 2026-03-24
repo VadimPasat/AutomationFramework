@@ -3,6 +3,9 @@ package com.endava.automation.atf.stepdef;
 import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.page.AddProductToCart;
 import com.endava.automation.atf.page.DeleteProductFromCart;
+import com.endava.automation.atf.screenshot.ScreenShot;
+import com.endava.automation.atf.screenshot.ScreenshotType;
+import com.endava.automation.atf.utils.AllureUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,6 +16,7 @@ import io.qameta.allure.Step;
 
 import java.io.IOException;
 
+import static com.endava.automation.atf.screenshot.ScreenshotType.FULL_PAGE;
 import static com.endava.automation.atf.screenshot.ScreenshotUtils.takeScreenshot;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,11 +51,9 @@ public class AddProductSteps {
 
     @Then("Access the cart")
     public void accessCart() {
-        Allure.step("ALLURE WORKING");
         boolean opened = addProductToCart.openCart();
         assertTrue(opened, "Cart did not open or header not visible");
         log.info("Shopping cart is displayed");
-        //addProductToCart.takeScreenshot("Cart_page");
     }
 
     @And("Check if the products were added successfully")
@@ -70,10 +72,7 @@ public class AddProductSteps {
                 "Cart page quantities do not match selected products");
 
         log.info("All items were successfully added to cart (expected={})", expected);
-    }
-    @Then("debug allure")
-    public void debugAllure() {
-        io.qameta.allure.Allure.step("ALLURE WORKING");
+
     }
 
     @Then("^Delete product(?:s)? from cart$")
@@ -81,5 +80,12 @@ public class AddProductSteps {
         int removed = deleteProductFromCart.deleteAllProducts();
         log.info("Removed {} items from the cart", removed);
         assertTrue(removed > 0, "No items were removed from the cart");
+    }
+
+    @Step("Check if the cart is empty")
+    @Then("Check if the cart is empty")
+    public void checkIfTheCartIsEmpty() throws IOException {
+        deleteProductFromCart.isCartNotEmpty();
+        //AllureUtils.attachScreenshot(driver);
     }
 }

@@ -4,6 +4,7 @@ import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.datagenerator.DataGenerator;
 import com.endava.automation.atf.screenshot.ScreenShot;
 import com.endava.automation.atf.screenshot.ScreenshotType;
+import com.endava.automation.atf.utils.AllureUtils;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -44,7 +45,6 @@ public abstract class AbstractPage {
         log.debug("Initialized page with folder: {}", folder);
     }
 
-    // 🔥 Fix for earlier error
     public WebDriver getDriver() {
         return driver;
     }

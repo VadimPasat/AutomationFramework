@@ -1,6 +1,4 @@
-#@Run
-#@BeforeHook
-#@AfterHook
+#@UI
 Feature: Performance glitch user add and delete products from cart
 
   Background:

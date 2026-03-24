@@ -1,5 +1,7 @@
 package com.endava.automation.atf.page;
 
+import com.endava.automation.atf.utils.AllureUtils;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -52,13 +54,6 @@ public class AddProductToCart extends AbstractPage {
         super(driver);
     }
 
-    /**
-     * Selects a random set of products from the inventory page and adds them to the cart.
-     * Returns the number actually added (may be less if not enough products).
-     *
-     * NOTE: This implementation reads the name from the same product card before clicking,
-     * avoiding the previous bug where the product name text was incorrectly used as a CSS selector.
-     */
     @Step("Select a random product")
     public int selectRandomProducts(int requestedCount) {
         if (requestedCount <= 0) {
@@ -101,9 +96,11 @@ public class AddProductToCart extends AbstractPage {
         log.info("Total products added to cart: {}", count);
         return count;
     }
+
     @Step("User is opening the cart")
     public boolean openCart() {
         wait.until(ExpectedConditions.elementToBeClickable(cartIcon)).click();
+        takeFullPageScreenshot("Cart_Opened");
         try {
             wait.until(ExpectedConditions.visibilityOf(cartHeader));
             log.info("Cart opened successfully.");
