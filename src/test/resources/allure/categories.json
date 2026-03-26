@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Assertion Failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*expected.*but was.*|.*AssertionError.*"
+  },
+  {
+    "name": "Element Not Found",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*NoSuchElementException.*"
+  },
+  {
+    "name": "Element Not Interactable",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*ElementNotInteractableException.*"
+  },
+  {
+    "name": "Stale Element",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*StaleElementReferenceException.*"
+  },
+  {
+    "name": "Timeout Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*TimeoutException.*|.*timed out.*"
+  },
+  {
+    "name": "API Errors",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*500.*|.*502.*|.*503.*|.*404.*"
+  },
+  {
+    "name": "Test Data Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*NullPointerException.*|.*IllegalArgumentException.*"
+  },
+  {
+    "name": "Unknown Failures",
+    "matchedStatuses": ["failed", "broken"]
+  }
+]

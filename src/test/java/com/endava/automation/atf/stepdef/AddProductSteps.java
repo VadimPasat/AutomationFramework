@@ -82,7 +82,6 @@ public class AddProductSteps {
         assertTrue(removed > 0, "No items were removed from the cart");
     }
 
-    @Step("Check if the cart is empty")
     @Then("Check if the cart is empty")
     public void checkIfTheCartIsEmpty() throws IOException {
         deleteProductFromCart.isCartNotEmpty();

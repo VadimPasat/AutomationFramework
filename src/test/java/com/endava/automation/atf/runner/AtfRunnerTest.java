@@ -1,5 +1,6 @@
 package com.endava.automation.atf.runner;
 
+import com.endava.automation.atf.utils.AllureSetup;
 import org.junit.platform.suite.api.*;
 
 import static io.cucumber.junit.platform.engine.Constants.*;
@@ -20,6 +21,9 @@ import static io.cucumber.junit.platform.engine.Constants.*;
         key = PLUGIN_PROPERTY_NAME,
         value = "pretty,io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
 )
-
 public class AtfRunnerTest {
+
+    static {
+        AllureSetup.init();
+    }
 }

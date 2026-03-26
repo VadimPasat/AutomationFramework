@@ -1,0 +1,7 @@
+{
+  "name": "Vadim QA Framework",
+  "type": "local",
+  "buildName": "UI Regression Run",
+  "buildUrl": "http://localhost",
+  "reportName": "Automation Practice Execution"
+}

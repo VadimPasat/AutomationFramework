@@ -16,38 +16,51 @@ import java.io.ByteArrayInputStream;
 public class AfterHook {
 
     private static final String DRIVER_KEY = "driver";
+
     private final DriverFactory driverFactory = new DriverFactory();
 
-    @After(order = 0)
-    public void tearDown(Scenario scenario) {
+    @After(order = 1)
+    public void attachScreenshotOnFailure(Scenario scenario) {
 
         ScenarioContext context = ScenarioContext.getScenarioContext();
         WebDriver driver = context.getData(DRIVER_KEY, WebDriver.class);
 
+        log.info("Scenario failed: {}", scenario.isFailed());
+        log.info("Driver is null: {}", driver == null);
+
         try {
             if (scenario.isFailed() && driver != null) {
-                attachScreenshot(driver);
+                attachScreenshot(driver, scenario);
             }
         } catch (Exception e) {
-            log.error("Error during AfterHook", e);
-        } finally {
-            driverFactory.quitDriver();
-            ScenarioContext.removeContext();
-            log.info("Driver was closed");
+            log.error("Error attaching screenshot", e);
         }
     }
 
-    private void attachScreenshot(WebDriver driver) {
+    @After(order = 0)
+    public void tearDown() {
+        try {
+            driverFactory.quitDriver();
+        } catch (Exception e) {
+            log.error("Error during driver quit", e);
+        } finally {
+            ScenarioContext.removeContext();
+            log.info("Driver was closed and context cleared");
+        }
+    }
+
+    private void attachScreenshot(WebDriver driver, Scenario scenario) {
+
         byte[] screenshot = ((TakesScreenshot) driver)
                 .getScreenshotAs(OutputType.BYTES);
 
         log.info("Attaching screenshot to Allure...");
 
-        Allure.getLifecycle().addAttachment(
-                "Failure Screenshot",
+        Allure.addAttachment(
+                "Failure Screenshot - " + scenario.getName(),
                 "image/png",
-                "png",
-                screenshot
+                new ByteArrayInputStream(screenshot),
+                ".png"
         );
     }
 }

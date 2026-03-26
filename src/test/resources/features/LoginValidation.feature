@@ -1,4 +1,4 @@
-#@UI
+@UI
 Feature: Login validation
 
   Scenario: Invalid username shows error message

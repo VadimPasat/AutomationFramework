@@ -2,6 +2,10 @@ package com.endava.automation.atf.hook;
 
 import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.manager.DriverFactory;
+import com.endava.automation.atf.utils.AllureCategoriesWriter;
+import com.endava.automation.atf.utils.AllureEnvironmentWriter;
+import com.endava.automation.atf.utils.AllureExecutorWriter;
+import com.endava.automation.atf.utils.AllureHistoryWriter;
 import io.cucumber.java.Before;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +16,6 @@ public class BeforeHook {
     private static final String DRIVER_KEY = "driver";
     private final DriverFactory driverFactory = new DriverFactory();
 
-    /**
-     * 🔥 UI TESTS ONLY
-     */
     @Before(value = "@UI", order = 0)
     public void setUpUI() {
 
@@ -28,13 +29,9 @@ public class BeforeHook {
         }
 
         context.saveData(DRIVER_KEY, driver);
-
         log.info("UI Test → Driver initialized");
     }
 
-    /**
-     * 🔥 API TESTS ONLY
-     */
     @Before(value = "@API", order = 0)
     public void setUpAPI() {
 
@@ -48,5 +45,13 @@ public class BeforeHook {
         // - base URI
         // - auth tokens
         // - headers
+    }
+
+    @Before(order = 0)
+    public void setupAllureFiles() {
+        AllureEnvironmentWriter.writeEnvironment();
+        AllureCategoriesWriter.writeCategories();
+        AllureExecutorWriter.writeExecutor();
+        AllureHistoryWriter.copyHistory();
     }
 }

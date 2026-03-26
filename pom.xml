@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://www.w3.org/xsd/maven-4.0.0.xsd">
+      http://www.w3.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -10,7 +11,7 @@
     <artifactId>AutomationPractice_01</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- 🔥 PROPERTIES -->
+    <!-- PROPERTIES -->
     <properties>
         <java.version>17</java.version>
 
@@ -23,16 +24,13 @@
         <slf4j.version>2.0.16</slf4j.version>
         <lombok.version>1.18.42</lombok.version>
 
-        <!-- 🔥 DEFAULT TAG -->
         <cucumber.filter.tags>@UI</cucumber.filter.tags>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- 🔥 BOM MANAGEMENT -->
+    <!-- BOM -->
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-bom</artifactId>
@@ -56,20 +54,17 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <!-- 🔥 DEPENDENCIES -->
     <dependencies>
 
-        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
         </dependency>
 
-        <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -82,7 +77,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -95,7 +89,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- 🔥 ALLURE (FIXED: NO scope, usable in main + test) -->
+        <!-- Allure -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber7-jvm</artifactId>
@@ -146,7 +140,7 @@
             <version>1.5.4</version>
         </dependency>
 
-        <!-- API testing -->
+        <!-- API -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -164,28 +158,64 @@
 
     </dependencies>
 
-    <!-- 🔥 BUILD -->
+    <!--BUILD -->
     <build>
         <plugins>
 
-            <!-- Compiler -->
+            <!--1. COPY HISTORY FIRST -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
-                <configuration>
-                    <release>${java.version}</release>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-allure-history</id>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <target>
+                                <echo message="COPYING ALLURE HISTORY"/>
+                                <mkdir dir="target/allure-results/history"/>
+                                <copy todir="target/allure-results/history" overwrite="true">
+                                    <fileset dir="target/allure-report/history" erroronmissingdir="false"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
-            <!-- 🔥 SUREFIRE (FIXED: ALLURE ENABLED) -->
+            <!--2. COPY executor + categories -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-allure-config</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/allure-results</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/resources/allure</directory>
+                                    <includes>
+                                        <include>executor.json</include>
+                                        <include>categories.json</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--3. TEST EXECUTION -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -198,34 +228,31 @@
                 </configuration>
             </plugin>
 
-            <!-- 🔥 ALLURE REPORT -->
+            <!--4. ALLURE REPORT -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
             </plugin>
 
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.1</version>
+                <configuration>
+                    <release>${java.version}</release>
+
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
-
-    <!-- 🔥 PROFILES -->
-    <profiles>
-
-        <profile>
-            <id>ui</id>
-            <properties>
-                <cucumber.filter.tags>@UI</cucumber.filter.tags>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>api</id>
-            <properties>
-                <cucumber.filter.tags>@API</cucumber.filter.tags>
-            </properties>
-        </profile>
-
-    </profiles>
-
 </project>
-

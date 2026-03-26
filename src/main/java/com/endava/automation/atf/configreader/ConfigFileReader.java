@@ -101,6 +101,16 @@ public class ConfigFileReader {
         );
     }
 
+    public String getEnvironment() {
+        String driverPath = properties.getProperty("env");
+
+        if (driverPath == null || driverPath.isBlank()) {
+            throw new RuntimeException("Environment is not specified in config.properties");
+        }
+
+        return driverPath;
+    }
+
     // ================= SCREENSHOT =================
 
     public String getScreenShotSaveDirectoryPath() {

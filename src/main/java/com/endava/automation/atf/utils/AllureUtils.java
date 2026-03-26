@@ -36,6 +36,8 @@ public class AllureUtils {
     public static void attachText(String name, String content) {
         Allure.addAttachment(name, content);
     }
+
+
     /*
     ///Example usage
     AllureUtils.attachRequest("Create User",requestBody);
