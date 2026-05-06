@@ -5,79 +5,159 @@ import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 @Log4j2
 public final class AllureEnvironmentWriter {
 
-    private static final String ALLURE_RESULTS_PATH = "target/allure-results";
-    private static final String ENV_FILE_NAME = "environment.properties";
+    private static final String RESULTS =
+            "target/allure-results";
 
     private AllureEnvironmentWriter() {
-        // utility class
+    }
+
+    public static void writeEnvironment() {
+
+        try {
+
+            ConfigFileReader config =
+                    new ConfigFileReader();
+
+            Properties properties =
+                    new Properties();
+
+            // =====================================================
+            // FRAMEWORK CONFIGURATION
+            // =====================================================
+
+            properties.setProperty(
+                    "Browser",
+                    systemOrConfig(
+                            "browser",
+                            config.getBrowser().name()
+                    )
+            );
+
+            properties.setProperty(
+                    "Environment",
+                    systemOrConfig(
+                            "env",
+                            config.getEnvironment()
+                    )
+            );
+
+            properties.setProperty(
+                    "Base URL",
+                    config.getBaseUrl()
+            );
+
+            properties.setProperty(
+                    "Headless",
+                    String.valueOf(config.getHeadLessMode())
+            );
+
+            properties.setProperty(
+                    "Window Maximize",
+                    String.valueOf(config.getWindowMaximize())
+            );
+
+            properties.setProperty(
+                    "Implicit Wait",
+                    String.valueOf(config.getImplicitlyWait())
+            );
+
+            // =====================================================
+            // EXECUTION METADATA
+            // =====================================================
+
+            properties.setProperty(
+                    "Tester",
+                    systemOrConfig(
+                            "tester",
+                            "Vadim Pasat"
+                    )
+            );
+
+            properties.setProperty(
+                    "Execution Type",
+                    systemOrConfig(
+                            "execution.type",
+                            "local"
+                    )
+            );
+
+            properties.setProperty(
+                    "Build Number",
+                    systemOrConfig(
+                            "build.number",
+                            "local-run"
+                    )
+            );
+
+            properties.setProperty(
+                    "Pipeline",
+                    systemOrConfig(
+                            "pipeline.name",
+                            "local"
+                    )
+            );
+
+            // =====================================================
+            // SYSTEM INFORMATION
+            // =====================================================
+
+            properties.setProperty(
+                    "OS",
+                    System.getProperty("os.name")
+            );
+
+            properties.setProperty(
+                    "Java Version",
+                    System.getProperty("java.version")
+            );
+
+            properties.setProperty(
+                    "User",
+                    System.getProperty("user.name")
+            );
+
+            // =====================================================
+            // WRITE FILE
+            // =====================================================
+
+            File envFile =
+                    new File(RESULTS + "/environment.properties");
+
+            try (FileOutputStream fos =
+                         new FileOutputStream(envFile)) {
+
+                properties.store(fos, "Allure Environment");
+            }
+
+            log.info("environment.properties generated");
+
+        } catch (Exception e) {
+
+            log.error(
+                    "Failed writing environment.properties",
+                    e
+            );
+        }
     }
 
     /**
-     * ✅ SAFE, parallel-friendly environment file writer
-     * ✅ Will NOT overwrite if file already exists
-     * ✅ Works for both UI & API runners
+     * Priority:
+     * 1. JVM parameter (-D)
+     * 2. Config value
      */
-    public static void safeWriteEnvironment() {
+    private static String systemOrConfig(
+            String systemKey,
+            String configValue
+    ) {
 
-        File resultsDir = new File(ALLURE_RESULTS_PATH);
-        File envFile = new File(resultsDir, ENV_FILE_NAME);
-
-        // ✅ Prevent overwriting / conflicts in parallel UI/API runners
-        if (envFile.exists()) {
-            log.info("ℹ environment.properties already exists → skipping write");
-            return;
-        }
-
-        try {
-            if (!resultsDir.exists() && resultsDir.mkdirs()) {
-                log.info("Created Allure results directory: {}", ALLURE_RESULTS_PATH);
-            }
-
-            ConfigFileReader config = new ConfigFileReader();
-            Properties envProps = new Properties();
-
-            // ✅ Framework Info
-            envProps.setProperty("Browser", config.getBrowser().name());
-            envProps.setProperty("Environment", config.getEnvironment());
-            envProps.setProperty("Base URL", config.getBaseUrl());
-            envProps.setProperty("Headless", config.getHeadLessMode().toString());
-            envProps.setProperty("Window Maximize", config.getWindowMaximize().toString());
-            envProps.setProperty("Implicit Wait", String.valueOf(config.getImplicitlyWait()));
-
-            // ✅ System Info
-            envProps.setProperty("OS", System.getProperty("os.name"));
-            envProps.setProperty("User", System.getProperty("user.name"));
-            envProps.setProperty("Java Version", System.getProperty("java.version"));
-
-            // ✅ Optional custom value (Tester)
-            try {
-                Object tester = config.getClass()
-                        .getMethod("getTester")
-                        .invoke(config);
-
-                if (tester != null) {
-                    envProps.setProperty("Tester", tester.toString());
-                }
-            } catch (Exception ignored) {
-                // ignore optional field
-            }
-
-            // ✅ Write file safely
-            try (FileOutputStream fos = new FileOutputStream(envFile)) {
-                envProps.store(fos, "Allure Environment");
-            }
-
-            log.info("✅ environment.properties generated at: {}", envFile.getAbsolutePath());
-
-        } catch (IOException e) {
-            log.error("❌ Failed to write Allure environment.properties", e);
-            throw new RuntimeException("Failed to write Allure environment.properties", e);
-        }
+        return System.getProperty(
+                systemKey,
+                configValue
+        );
     }
 }

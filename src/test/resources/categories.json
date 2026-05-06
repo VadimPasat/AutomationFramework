@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Assertion Failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*AssertionError.*|.*expected.*but was.*|.*Condition not met.*"
+  },
+  {
+    "name": "Element Not Found",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*NoSuchElementException.*"
+  },
+  {
+    "name": "Element Not Interactable",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*ElementNotInteractableException.*|.*ElementClickInterceptedException.*"
+  },
+  {
+    "name": "Stale Elements",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*StaleElementReferenceException.*"
+  },
+  {
+    "name": "Timeout Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*TimeoutException.*|.*timed out.*|.*Wait timed out.*"
+  },
+  {
+    "name": "WebDriver Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*WebDriverException.*|.*SessionNotCreatedException.*|.*UnreachableBrowserException.*"
+  },
+  {
+    "name": "API Failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*500.*|.*502.*|.*503.*|.*504.*|.*404.*"
+  },
+  {
+    "name": "Connection Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*ConnectException.*|.*Connection refused.*|.*UnknownHostException.*"
+  },
+  {
+    "name": "Test Data Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*NullPointerException.*|.*IllegalArgumentException.*|.*ClassCastException.*"
+  },
+  {
+    "name": "File / Resource Issues",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*FileNotFoundException.*|.*IOException.*"
+  },
+  {
+    "name": "Unknown Failures",
+    "matchedStatuses": ["failed", "broken"]
+  }
+]

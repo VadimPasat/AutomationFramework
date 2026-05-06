@@ -3,42 +3,81 @@ package com.endava.automation.atf.utils;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.nio.file.Files;
 
 @Log4j2
-public class AllureExecutorWriter {
+public final class AllureExecutorWriter {
 
-    private static final String OUTPUT_PATH = "target/allure-results/executor.json";
+    private static final String RESULTS =
+            "target/allure-results";
 
-    public static void safeWriteExecutor() {
+    private AllureExecutorWriter() {
+    }
+
+    public static void writeExecutor() {
+
         try {
-            File file = new File(OUTPUT_PATH);
 
-            if (file.exists()) {
-                log.info("ℹ executor.json already exists → skipping");
-                return;
-            }
+            File executor =
+                    new File(RESULTS + "/executor.json");
 
-            file.getParentFile().mkdirs();
+            String buildNumber =
+                    env("BUILD_NUMBER", "1");
 
-            String json = """
+            String jobName =
+                    env("JOB_NAME", "Local Execution");
+
+            String buildUrl =
+                    env("BUILD_URL", "http://localhost");
+
+            String jenkinsUrl =
+                    env("JENKINS_URL", "http://localhost");
+
+            String json = String.format("""
                     {
-                      "name": "Vadim QA Framework",
-                      "type": "local",
-                      "buildName": "UI Regression Run",
-                      "buildUrl": "http://localhost",
-                      "reportName": "Automation Practice Execution"
+                      "name": "%s",
+                      "type": "%s",
+                      "url": "%s",
+                      "buildOrder": %s,
+                      "buildName": "Build #%s",
+                      "buildUrl": "%s",
+                      "reportName": "Automation Execution Report",
+                      "reportUrl": "%s/allure"
                     }
-            """;
+                    """,
+                    jobName,
+                    isCI() ? "jenkins" : "local",
+                    jenkinsUrl,
+                    buildNumber,
+                    buildNumber,
+                    buildUrl,
+                    buildUrl
+            );
 
-            try (FileWriter writer = new FileWriter(file)) {
-                writer.write(json);
-            }
+            Files.writeString(executor.toPath(), json);
 
-            log.info("✅ executor.json created");
+            log.info("executor.json generated");
 
         } catch (Exception e) {
-            log.error("❌ Failed to write executor.json", e);
+
+            log.error("Failed writing executor.json", e);
         }
+    }
+
+    private static boolean isCI() {
+
+        return System.getenv("JENKINS_URL") != null;
+    }
+
+    private static String env(
+            String key,
+            String defaultValue
+    ) {
+
+        String value = System.getenv(key);
+
+        return value == null
+                ? defaultValue
+                : value;
     }
 }

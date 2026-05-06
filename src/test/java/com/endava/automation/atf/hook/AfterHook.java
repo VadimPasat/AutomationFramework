@@ -2,7 +2,9 @@ package com.endava.automation.atf.hook;
 
 import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.manager.DriverFactory;
+import com.endava.automation.atf.utils.AllureHistoryManager;
 import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
 import lombok.extern.log4j.Log4j2;
@@ -53,5 +55,9 @@ public class AfterHook {
             ScenarioContext.clear();
             log.info("✅ ScenarioContext cleared");
         }
+    }
+    @AfterAll
+    public static void persistHistory() {
+        AllureHistoryManager.saveHistory();
     }
 }

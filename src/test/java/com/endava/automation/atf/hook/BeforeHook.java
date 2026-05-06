@@ -78,4 +78,12 @@ public class BeforeHook {
 
         log.info("✅ Allure setup complete");
     }
+
+    @Before(order = 0)
+    public void initializeAllure() {
+        log.info("🚀 Initializing Allure (centralized setup)...");
+        AllureSetup.init();
+
+        log.info("✅ Allure setup complete");
+    }
 }

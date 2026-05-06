@@ -186,26 +186,6 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
-
-                    <!-- Executor -->
-                    <execution>
-                        <id>write-executor</id>
-                        <phase>verify</phase>
-                        <configuration>
-                            <target>
-                                <java classname="com.endava.automation.atf.utils.DynamicExecutorWriter" fork="true">
-                                    <classpath>
-                                        <path refid="maven.test.classpath"/>
-                                    </classpath>
-                                </java>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-
-                    <!-- 🔥 FIXED HISTORY SAVE -->
                     <execution>
                         <id>save-history</id>
                         <phase>verify</phase>
@@ -223,7 +203,6 @@
                             <goal>run</goal>
                         </goals>
                     </execution>
-
                 </executions>
             </plugin>
 

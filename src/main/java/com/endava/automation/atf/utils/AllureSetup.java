@@ -1,43 +1,50 @@
 package com.endava.automation.atf.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 
 @Log4j2
-public class AllureSetup {
+public final class AllureSetup {
 
-    private static boolean initialized = false;
+    private static volatile boolean initialized = false;
+
+    private AllureSetup() {
+    }
 
     public static synchronized void init() {
-        if (initialized) return;
 
-        try {
-            log.info("🚀 Initializing Allure setup...");
-
-            File resultsDir = new File("target/allure-results");
-            if (!resultsDir.exists()) {
-                resultsDir.mkdirs();
-            }
-
-            // 🔥 STEP 1 — Restore history (TREND)
-            AllureHistoryManager.restoreHistory();
-
-            // 🔥 STEP 2 — Executor (MUST be before report)
-            DynamicExecutorWriter.writeDynamicExecutor();
-
-            // 🔥 STEP 3 — Environment
-            AllureEnvironmentWriter.safeWriteEnvironment();
-
-            // 🔥 STEP 4 — Categories
-            AllureCategoriesWriter.safeWriteCategories();
-
-            log.info("✅ Allure setup initialized");
-
-        } catch (Exception e) {
-            log.error("❌ Allure setup failed", e);
+        if (initialized) {
+            return;
         }
+        try {
 
-        initialized = true;
+            log.info("Initializing Allure infrastructure...");
+            AllureHistoryManager.restoreHistory();
+            AllureExecutorWriter.writeExecutor();
+            AllureEnvironmentWriter.writeEnvironment();
+            initialized = true;
+            log.info("Allure initialized successfully");
+        } catch (Exception e) {
+            log.error("Failed to initialize Allure", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void cleanResultsDirectory() {
+        try {
+
+            File results =
+                    new File("target/allure-results");
+
+            if (results.exists()) {
+                FileUtils.deleteDirectory(results);
+            }
+            results.mkdirs();
+            log.info("allure-results cleaned");
+        } catch (Exception e) {
+            log.error("Failed cleaning allure-results", e);
+        }
     }
 }
