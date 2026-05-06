@@ -3,71 +3,129 @@ package com.endava.automation.atf.utils;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 @Log4j2
 public final class AllureExecutorWriter {
 
-    private static final String RESULTS =
+    private static final String RESULTS_DIRECTORY =
             "target/allure-results";
 
+    private static final String EXECUTOR_FILE =
+            "executor.json";
+
     private AllureExecutorWriter() {
+        // utility class
     }
 
     public static void writeExecutor() {
 
         try {
 
-            File executor =
-                    new File(RESULTS + "/executor.json");
+            boolean ciExecution = isCiExecution();
 
-            String buildNumber =
-                    env("BUILD_NUMBER", "1");
+            File resultsDir =
+                    new File(RESULTS_DIRECTORY);
 
-            String jobName =
-                    env("JOB_NAME", "Local Execution");
+            if (!resultsDir.exists()) {
+                resultsDir.mkdirs();
+            }
 
-            String buildUrl =
-                    env("BUILD_URL", "http://localhost");
+            File executorFile =
+                    new File(resultsDir, EXECUTOR_FILE);
 
-            String jenkinsUrl =
-                    env("JENKINS_URL", "http://localhost");
+            String json =
+                    ciExecution
+                            ? buildCiExecutorJson()
+                            : buildLocalExecutorJson();
 
-            String json = String.format("""
-                    {
-                      "name": "%s",
-                      "type": "%s",
-                      "url": "%s",
-                      "buildOrder": %s,
-                      "buildName": "Build #%s",
-                      "buildUrl": "%s",
-                      "reportName": "Automation Execution Report",
-                      "reportUrl": "%s/allure"
-                    }
-                    """,
-                    jobName,
-                    isCI() ? "jenkins" : "local",
-                    jenkinsUrl,
-                    buildNumber,
-                    buildNumber,
-                    buildUrl,
-                    buildUrl
+            Files.writeString(
+                    executorFile.toPath(),
+                    json,
+                    StandardCharsets.UTF_8
             );
 
-            Files.writeString(executor.toPath(), json);
-
-            log.info("executor.json generated");
+            log.info("executor.json generated successfully");
 
         } catch (Exception e) {
 
-            log.error("Failed writing executor.json", e);
+            log.error(
+                    "Failed generating executor.json",
+                    e
+            );
         }
     }
 
-    private static boolean isCI() {
+    // =====================================================
+    // LOCAL EXECUTION
+    // =====================================================
 
-        return System.getenv("JENKINS_URL") != null;
+    private static String buildLocalExecutorJson() {
+
+        return """
+                {
+                  "name": "Local Execution",
+                  "type": "local",
+                  "buildName": "Local Run",
+                  "reportName": "UI + API Regression Suite"
+                }
+                """;
     }
+
+    // =====================================================
+    // JENKINS EXECUTION
+    // =====================================================
+
+    private static String buildCiExecutorJson() {
+
+        String buildNumber =
+                env("BUILD_NUMBER", "1");
+
+        String buildUrl =
+                env("BUILD_URL", "");
+
+        String reportUrl =
+                buildUrl + "allure";
+
+        String jobName =
+                env(
+                        "JOB_NAME",
+                        "Automation Regression"
+                );
+
+        return String.format("""
+                {
+                  "name": "Jenkins",
+                  "type": "jenkins",
+                  "buildOrder": %s,
+                  "buildName": "Build #%s",
+                  "buildUrl": "%s",
+                  "reportUrl": "%s",
+                  "reportName": "%s"
+                }
+                """,
+                buildNumber,
+                buildNumber,
+                buildUrl,
+                reportUrl,
+                jobName
+        );
+    }
+
+    // =====================================================
+    // EXECUTION TYPE
+    // =====================================================
+
+    private static boolean isCiExecution() {
+
+        return System.getenv("JENKINS_URL") != null
+                || System.getenv("BUILD_NUMBER") != null;
+    }
+
+    // =====================================================
+    // ENVIRONMENT VARIABLE
+    // =====================================================
 
     private static String env(
             String key,
@@ -76,7 +134,7 @@ public final class AllureExecutorWriter {
 
         String value = System.getenv(key);
 
-        return value == null
+        return value == null || value.isBlank()
                 ? defaultValue
                 : value;
     }

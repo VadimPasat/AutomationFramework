@@ -69,21 +69,14 @@ public class LogInLogOutSteps {
 
     @Then("Error message is displayed")
     public void errorMessageDisplayed() {
-
         UserLoginPage loginPage = ctx.get(LOGIN_PAGE_KEY, UserLoginPage.class);
-
         assertNotNull(loginPage, "LoginPage not found in context.");
-
         LoginErrorComponent error = loginPage.getErrorComponent();
-
         assertTrue(error.isDisplayed(), "Error not displayed");
-
         String text = error.getText();
         log.info("Captured error message: [{}]", text);
-
         assertTrue(text.contains("Epic sadface"),
                 "Unexpected error message: " + text);
-
         log.info("✅ Error message validation passed");
     }
 

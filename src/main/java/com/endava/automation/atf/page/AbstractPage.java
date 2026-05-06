@@ -30,13 +30,13 @@ public abstract class AbstractPage {
 
         PageFactory.initElements(driver, this);
 
-        // ✅ NEW ScenarioContext API
+        // NEW ScenarioContext API
         ScenarioContext ctx = ScenarioContext.get();
 
-        // ✅ Try to reuse folder if it already exists
+        // Try to reuse folder if it already exists
         String folderName = ctx.get(FOLDER_KEY, String.class);
 
-        // ✅ If no folder found → generate
+        // If no folder found → generate
         if (folderName == null) {
             folderName = DataGenerator.folderNameGenerator();
             ctx.set(FOLDER_KEY, folderName);
@@ -53,8 +53,6 @@ public abstract class AbstractPage {
     public WebDriver getDriver() {
         return driver;
     }
-
-    // ✅ Screenshot utilities (unchanged but cleaned)
 
     @Step("Take screenshot: {name}")
     public void takeScreenshot(String name) {
