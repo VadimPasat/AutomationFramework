@@ -54,6 +54,18 @@ public class ConfigFileReader {
         return url;
     }
 
+    public String getBaseApiUrl() {
+        String key = "base.api.url";
+        String url = properties.getProperty(key);
+
+        if (url == null || url.isBlank()) {
+            throw new RuntimeException("Base URL not found for key: " + key);
+        }
+
+        log.info("Using BASE URL: {}", url);
+        return url;
+    }
+
     // ================= DRIVER =================
 
     public String getDriverPath() {

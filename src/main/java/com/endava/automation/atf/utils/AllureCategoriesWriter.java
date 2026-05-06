@@ -2,44 +2,40 @@ package com.endava.automation.atf.utils;
 
 import lombok.extern.log4j.Log4j2;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.File;
+import java.io.FileWriter;
 
 @Log4j2
-public final class AllureCategoriesWriter {
+public class AllureCategoriesWriter {
 
-    private static final String ALLURE_RESULTS_PATH = "target/allure-results";
-    private static final String SOURCE_FILE = "allure/categories.json";
-    private static final String TARGET_FILE = "categories.json";
+    private static final String OUTPUT_PATH = "target/allure-results/categories.json";
 
-    private AllureCategoriesWriter() {}
+    public static void safeWriteCategories() {
+        try {
+            File file = new File(OUTPUT_PATH);
 
-    public static void writeCategories() {
-        copyFileFromResources(SOURCE_FILE, TARGET_FILE);
-    }
-
-    private static void copyFileFromResources(String resourcePath, String targetFileName) {
-        try (InputStream input = AllureCategoriesWriter.class
-                .getClassLoader()
-                .getResourceAsStream(resourcePath)) {
-
-            if (input == null) {
-                throw new RuntimeException(resourcePath + " not found in resources");
+            if (file.exists()) {
+                log.info("ℹ categories.json already exists → skipping");
+                return;
             }
 
-            File dir = new File(ALLURE_RESULTS_PATH);
-            if (!dir.exists() && dir.mkdirs()) {
-                log.info("Created Allure results directory");
+            file.getParentFile().mkdirs();
+
+            String json = """
+            [
+              { "name": "Failed Tests", "matchedStatuses": ["failed"] },
+              { "name": "Broken Tests", "matchedStatuses": ["broken"] }
+            ]
+            """;
+
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write(json);
             }
 
-            File targetFile = new File(dir, targetFileName);
+            log.info("✅ categories.json created");
 
-            Files.copy(input, targetFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-
-            log.info("{} copied to {}", resourcePath, targetFile.getAbsolutePath());
-
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to copy " + resourcePath, e);
+        } catch (Exception e) {
+            log.error("❌ Failed to write categories.json", e);
         }
     }
 }

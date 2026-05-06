@@ -2,8 +2,7 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-      http://www.w3.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -11,10 +10,11 @@
     <artifactId>AutomationPractice_01</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- ========================================================= -->
     <!-- PROPERTIES -->
+    <!-- ========================================================= -->
     <properties>
         <java.version>17</java.version>
-
         <selenium.version>4.40.0</selenium.version>
         <junit.version>5.14.1</junit.version>
         <cucumber.version>7.31.0</cucumber.version>
@@ -23,14 +23,14 @@
         <log4j2.version>2.25.0</log4j2.version>
         <slf4j.version>2.0.16</slf4j.version>
         <lombok.version>1.18.42</lombok.version>
-
-        <cucumber.filter.tags>@UI</cucumber.filter.tags>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- BOM -->
+    <!-- ========================================================= -->
+    <!-- DEPENDENCY MANAGEMENT -->
+    <!-- ========================================================= -->
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-bom</artifactId>
@@ -54,17 +54,43 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
-    <!-- 🔥 DEPENDENCIES -->
+    <!-- ========================================================= -->
+    <!-- DEPENDENCIES -->
+    <!-- ========================================================= -->
     <dependencies>
 
+        <!-- Selenium -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
         </dependency>
 
+        <!-- WebDriverManager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.3.2</version>
+        </dependency>
+
+        <!-- Commons IO -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.15.1</version>
+        </dependency>
+
+        <!-- AShot -->
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- Cucumber -->
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -77,6 +103,7 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JUnit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -102,13 +129,13 @@
             <version>${allure.version}</version>
         </dependency>
 
-        <!-- Logging -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-rest-assured</artifactId>
+            <version>${allure.version}</version>
         </dependency>
 
+        <!-- Logging -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -127,27 +154,6 @@
             <version>${log4j2.version}</version>
         </dependency>
 
-        <!-- Utils -->
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>6.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.yandex.qatools.ashot</groupId>
-            <artifactId>ashot</artifactId>
-            <version>1.5.4</version>
-        </dependency>
-
-        <!-- API -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.5.6</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -158,81 +164,83 @@
 
     </dependencies>
 
-    <!--BUILD -->
+    <!-- ========================================================= -->
+    <!-- BUILD -->
+    <!-- ========================================================= -->
     <build>
         <plugins>
 
-            <!--1. COPY HISTORY FIRST -->
+            <!-- Surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+
+            <!-- 🔥 EXECUTOR + HISTORY -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
+
+                    <!-- Executor -->
                     <execution>
-                        <id>copy-allure-history</id>
-                        <phase>initialize</phase>
+                        <id>write-executor</id>
+                        <phase>verify</phase>
                         <configuration>
                             <target>
-                                <echo message="COPYING ALLURE HISTORY"/>
-                                <mkdir dir="target/allure-results/history"/>
-                                <copy todir="target/allure-results/history" overwrite="true">
-                                    <fileset dir="target/allure-report/history" erroronmissingdir="false"/>
-                                </copy>
+                                <java classname="com.endava.automation.atf.utils.DynamicExecutorWriter" fork="true">
+                                    <classpath>
+                                        <path refid="maven.test.classpath"/>
+                                    </classpath>
+                                </java>
                             </target>
                         </configuration>
                         <goals>
                             <goal>run</goal>
                         </goals>
                     </execution>
-                </executions>
-            </plugin>
 
-            <!--2. COPY executor + categories -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
+                    <!-- 🔥 FIXED HISTORY SAVE -->
                     <execution>
-                        <id>copy-allure-config</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
+                        <id>save-history</id>
+                        <phase>verify</phase>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/allure-results</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/test/resources/allure</directory>
-                                    <includes>
-                                        <include>executor.json</include>
-                                        <include>categories.json</include>
-                                    </includes>
-                                </resource>
-                            </resources>
+                            <target>
+                                <java classname="com.endava.automation.atf.utils.AllureHistoryManager" fork="true">
+                                    <classpath>
+                                        <path refid="maven.test.classpath"/>
+                                    </classpath>
+                                    <arg value="save"/>
+                                </java>
+                            </target>
                         </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                     </execution>
+
                 </executions>
             </plugin>
 
-            <!--3. TEST EXECUTION -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.4</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
-                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
-
-            <!--4. ALLURE REPORT -->
+            <!-- Allure Report -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
+                <executions>
+                    <execution>
+                        <id>allure-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Compiler -->
@@ -242,7 +250,6 @@
                 <version>3.14.1</version>
                 <configuration>
                     <release>${java.version}</release>
-
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -255,4 +262,33 @@
 
         </plugins>
     </build>
+
+    <!-- ========================================================= -->
+    <!-- PROFILES -->
+    <!-- ========================================================= -->
+    <profiles>
+
+        <profile>
+            <id>api-tests</id>
+            <properties>
+                <test>ApiRunnerTest</test>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ui-tests</id>
+            <properties>
+                <test>UiRunnerTest</test>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>all-tests</id>
+            <properties>
+                <test>MasterRunnerTest</test>
+            </properties>
+        </profile>
+
+    </profiles>
+
 </project>

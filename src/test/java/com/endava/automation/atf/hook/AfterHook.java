@@ -16,21 +16,27 @@ import java.io.ByteArrayInputStream;
 public class AfterHook {
 
     private static final String DRIVER_KEY = "driver";
-
     private final DriverFactory driverFactory = new DriverFactory();
 
     @After(order = 1)
     public void attachScreenshotOnFailure(Scenario scenario) {
 
-        ScenarioContext context = ScenarioContext.getScenarioContext();
-        WebDriver driver = context.getData(DRIVER_KEY, WebDriver.class);
+        ScenarioContext ctx = ScenarioContext.get();
+        WebDriver driver = ctx.get(DRIVER_KEY, WebDriver.class);
 
-        log.info("Scenario failed: {}", scenario.isFailed());
-        log.info("Driver is null: {}", driver == null);
+        if (driver == null) return;
 
         try {
-            if (scenario.isFailed() && driver != null) {
-                attachScreenshot(driver, scenario);
+            if (scenario.isFailed()) {
+                byte[] screenshot = ((TakesScreenshot) driver)
+                        .getScreenshotAs(OutputType.BYTES);
+
+                Allure.addAttachment(
+                        "Failure Screenshot - " + scenario.getName(),
+                        "image/png",
+                        new ByteArrayInputStream(screenshot),
+                        ".png"
+                );
             }
         } catch (Exception e) {
             log.error("Error attaching screenshot", e);
@@ -42,25 +48,10 @@ public class AfterHook {
         try {
             driverFactory.quitDriver();
         } catch (Exception e) {
-            log.error("Error during driver quit", e);
+            log.error("Error quitting driver", e);
         } finally {
-            ScenarioContext.removeContext();
-            log.info("Driver was closed and context cleared");
+            ScenarioContext.clear();
+            log.info("✅ ScenarioContext cleared");
         }
-    }
-
-    private void attachScreenshot(WebDriver driver, Scenario scenario) {
-
-        byte[] screenshot = ((TakesScreenshot) driver)
-                .getScreenshotAs(OutputType.BYTES);
-
-        log.info("Attaching screenshot to Allure...");
-
-        Allure.addAttachment(
-                "Failure Screenshot - " + scenario.getName(),
-                "image/png",
-                new ByteArrayInputStream(screenshot),
-                ".png"
-        );
     }
 }

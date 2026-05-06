@@ -1,8 +1,8 @@
-
+@API
 Feature: Testing User API
 
   Background:
-    Given a user API endpoint "https://reqres.in"
+    Given a user API endpoint
 
   Scenario: Get user from API
     When I make a GET request to the endpoint

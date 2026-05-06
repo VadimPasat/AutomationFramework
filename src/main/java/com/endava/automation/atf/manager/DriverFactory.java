@@ -3,7 +3,7 @@ package com.endava.automation.atf.manager;
 import com.endava.automation.atf.constant.DriverType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -26,24 +26,21 @@ public class DriverFactory {
 
     public DriverFactory() {
         var cfg = FileReaderManager.getInstance().getConfigFileReader();
-        this.driverType = cfg.getBrowser();
-        this.headless = cfg.getHeadLessMode();
-        this.maximizeWindow = cfg.getWindowMaximize();
-        this.implicitWaitSeconds = cfg.getImplicitlyWait();
+        driverType = cfg.getBrowser();
+        headless = cfg.getHeadLessMode();
+        maximizeWindow = cfg.getWindowMaximize();
+        implicitWaitSeconds = cfg.getImplicitlyWait();
     }
 
     public WebDriver getDriver() {
         WebDriver driver = DRIVER.get();
 
         if (!isAlive(driver)) {
+            log.info("Creating new driver for thread: {}", Thread.currentThread().getName());
             DRIVER.remove();
-
             driver = createDriver();
             configureDriver(driver);
-
             DRIVER.set(driver);
-
-            log.debug("Created WebDriver for thread {}", Thread.currentThread().getName());
         }
 
         return driver;
@@ -52,25 +49,27 @@ public class DriverFactory {
     public void quitDriver() {
         WebDriver driver = DRIVER.get();
 
-        try {
-            if (driver != null) {
+        if (driver != null) {
+            log.info("Quitting driver for thread: {}", Thread.currentThread().getName());
+            try {
                 driver.quit();
-                log.debug("Driver quit for thread {}", Thread.currentThread().getName());
+            } catch (Exception e) {
+                log.error("Error quitting driver", e);
             }
-        } catch (Exception e) {
-            log.warn("Error quitting driver", e);
-        } finally {
-            DRIVER.remove();
+        } else {
+            log.warn("No driver found to quit for thread: {}", Thread.currentThread().getName());
         }
+
+        DRIVER.remove();
     }
 
     private boolean isAlive(WebDriver driver) {
         if (driver == null) return false;
 
         try {
-            if (driver instanceof RemoteWebDriver rwd) {
+            if (driver instanceof RemoteWebDriver rwd)
                 return rwd.getSessionId() != null;
-            }
+
             driver.getTitle();
             return true;
         } catch (Exception e) {
@@ -92,16 +91,10 @@ public class DriverFactory {
 
         ChromeOptions options = new ChromeOptions();
 
-        if (headless) {
+        if (headless)
             options.addArguments("--headless=new", "--disable-gpu");
-        }
 
-        options.addArguments(
-                "--incognito",
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-notifications"
-        );
+        options.addArguments("--incognito", "--no-sandbox", "--disable-dev-shm-usage", "--disable-notifications");
 
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
@@ -117,15 +110,13 @@ public class DriverFactory {
 
         FirefoxOptions options = new FirefoxOptions();
 
-        if (headless) {
-            options.addArguments("-headless");
-        }
+        if (headless)
+            options.addArguments("--headless");
 
         return new FirefoxDriver(options);
     }
 
     private void configureDriver(WebDriver driver) {
-
         if (maximizeWindow) {
             try {
                 driver.manage().window().maximize();
@@ -134,7 +125,8 @@ public class DriverFactory {
             }
         }
 
-        driver.manage().timeouts()
+        driver.manage()
+                .timeouts()
                 .implicitlyWait(Duration.ofSeconds(implicitWaitSeconds));
     }
 }

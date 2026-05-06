@@ -4,7 +4,6 @@ import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.datagenerator.DataGenerator;
 import com.endava.automation.atf.screenshot.ScreenShot;
 import com.endava.automation.atf.screenshot.ScreenshotType;
-import com.endava.automation.atf.utils.AllureUtils;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
@@ -31,23 +30,31 @@ public abstract class AbstractPage {
 
         PageFactory.initElements(driver, this);
 
-        ScenarioContext context = ScenarioContext.getScenarioContext();
+        // ✅ NEW ScenarioContext API
+        ScenarioContext ctx = ScenarioContext.get();
 
-        String existingFolder = context.getData(FOLDER_KEY, String.class);
+        // ✅ Try to reuse folder if it already exists
+        String folderName = ctx.get(FOLDER_KEY, String.class);
 
-        if (existingFolder == null) {
-            existingFolder = DataGenerator.folderNameGenerator();
-            context.saveData(FOLDER_KEY, existingFolder);
+        // ✅ If no folder found → generate
+        if (folderName == null) {
+            folderName = DataGenerator.folderNameGenerator();
+            ctx.set(FOLDER_KEY, folderName);
+            log.info("📁 Screenshot folder created for scenario: {}", folderName);
+        } else {
+            log.info("📁 Reusing existing screenshot folder: {}", folderName);
         }
 
-        this.folder = existingFolder;
+        this.folder = folderName;
 
-        log.debug("Initialized page with folder: {}", folder);
+        log.debug("✅ AbstractPage initialized with folder: {}", folder);
     }
 
     public WebDriver getDriver() {
         return driver;
     }
+
+    // ✅ Screenshot utilities (unchanged but cleaned)
 
     @Step("Take screenshot: {name}")
     public void takeScreenshot(String name) {
@@ -71,7 +78,7 @@ public abstract class AbstractPage {
         );
     }
 
-    @Step("Take element screenshot: {name}")
+    @Step("Take screenshot of element: {name}")
     public void takeElementScreenshot(WebElement element, String name) {
         ScreenShot.makeScreenShot(
                 ScreenshotType.BORDERED_ELEMENT,

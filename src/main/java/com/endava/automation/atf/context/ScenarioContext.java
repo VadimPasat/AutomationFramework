@@ -1,80 +1,50 @@
 package com.endava.automation.atf.context;
 
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
 
 public class ScenarioContext {
 
-    private static final ThreadLocal<ScenarioContext> threadLocalContext =
+    private static final ThreadLocal<ScenarioContext> THREAD_LOCAL =
             ThreadLocal.withInitial(ScenarioContext::new);
 
-    private final Map<String, Object> context;
+    private final Map<String, Object> data = new ConcurrentHashMap<>();
 
-    private ScenarioContext() {
-        this.context = new ConcurrentHashMap<>();
+    private ScenarioContext() {}
+
+    public static ScenarioContext get() {
+        return THREAD_LOCAL.get();
     }
 
-    public static ScenarioContext getScenarioContext() {
-        return threadLocalContext.get();
+    public static void clear() {
+        THREAD_LOCAL.remove();
     }
 
-    public static void removeContext() {
-        threadLocalContext.remove(); // Prevent memory leaks
-    }
-
-    public <T> void saveData(String key, T value) {
+    public <T> void set(String key, T value) {
         validateKey(key);
-        context.put(key, value);
+        data.put(key, value);
     }
 
-    public <T> T getData(String key, Class<T> type) {
+    @SuppressWarnings("unchecked")
+    public <T> T get(String key, Class<T> type) {
         validateKey(key);
-        Object value = context.get(key);
-
-        if (value == null) {
-            return null;
-        }
-
-        if (!type.isInstance(value)) {
-            throw new ClassCastException(
-                    "Expected type " + type.getName() +
-                            " but found " + value.getClass().getName()
-            );
-        }
-        return type.cast(value);
+        Object value = data.get(key);
+        return value == null ? null : type.cast(value);
     }
 
-    public <T> T getDataOrDefault(String key, T defaultValue, Class<T> type) {
+    public Optional<Object> getOptional(String key) {
         validateKey(key);
-        Object value = context.getOrDefault(key, defaultValue);
-
-        if (!type.isInstance(value)) {
-            throw new ClassCastException(
-                    "Expected type " + type.getName() +
-                            " but found " + value.getClass().getName()
-            );
-        }
-        return type.cast(value);
-    }
-
-    public Optional<Object> getOptionalData(String key) {
-        validateKey(key);
-        return Optional.ofNullable(context.get(key));
+        return Optional.ofNullable(data.get(key));
     }
 
     public void clearData() {
-        context.clear();
-    }
-
-    public void reset() {
-        clearData();
-        removeContext();
+        data.clear();
     }
 
     private void validateKey(String key) {
-        if (key == null || key.trim().isEmpty()) {
-            throw new IllegalArgumentException("Context key cannot be null or empty");
+        if (key == null || key.isBlank()) {
+            throw new IllegalArgumentException("ScenarioContext key cannot be null or empty");
         }
     }
 }
