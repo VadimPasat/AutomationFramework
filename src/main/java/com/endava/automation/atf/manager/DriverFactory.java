@@ -42,7 +42,6 @@ public class DriverFactory {
             configureDriver(driver);
             DRIVER.set(driver);
         }
-
         return driver;
     }
 
@@ -59,7 +58,6 @@ public class DriverFactory {
         } else {
             log.warn("No driver found to quit for thread: {}", Thread.currentThread().getName());
         }
-
         DRIVER.remove();
     }
 
