@@ -4,6 +4,7 @@ import com.endava.automation.atf.context.ScenarioContext;
 import com.endava.automation.atf.manager.DriverFactory;
 import com.endava.automation.atf.manager.FileReaderManager;
 import com.endava.automation.atf.utils.AllureSetup;
+import com.endava.automation.atf.utils.JUnitPropertiesManager;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;

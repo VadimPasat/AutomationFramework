@@ -46,8 +46,14 @@ public class APITests {
 
     @Test
     void getTest() {
-        Response response = get("/users?page=2");
-        assertEquals(200, response.statusCode());
+        Response response =
+                given()
+                        .header("x-api-key", API_KEY)
+                        .contentType(ContentType.JSON)
+                        .when()
+                        .get("/users?page=2");
+        assertEquals(
+                200, response.statusCode());
         System.out.println(response.prettyPrint());
     }
 

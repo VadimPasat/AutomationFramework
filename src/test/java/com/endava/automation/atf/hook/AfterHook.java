@@ -52,8 +52,9 @@ public class AfterHook {
         } catch (Exception e) {
             log.error("Error quitting driver", e);
         } finally {
+            ScenarioContext.get().clearData();
             ScenarioContext.clear();
-            log.info("✅ ScenarioContext cleared");
+            log.info("ScenarioContext cleared");
         }
     }
     @AfterAll

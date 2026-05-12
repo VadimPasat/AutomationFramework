@@ -1,6 +1,7 @@
 package com.endava.automation.atf.runner;
 
 import com.endava.automation.atf.utils.AllureSetup;
+import com.endava.automation.atf.utils.JUnitPropertiesManager;
 import org.junit.platform.suite.api.*;
 
 import static io.cucumber.junit.platform.engine.Constants.*;
@@ -18,15 +19,6 @@ import static io.cucumber.junit.platform.engine.Constants.*;
 @ConfigurationParameter(
         key = FILTER_TAGS_PROPERTY_NAME,
         value = "@API"
-)
-
-@ConfigurationParameter(
-        key = PARALLEL_EXECUTION_ENABLED_PROPERTY_NAME,
-        value = "true"
-)
-@ConfigurationParameter(
-        key = PARALLEL_CONFIG_STRATEGY_PROPERTY_NAME,
-        value = "dynamic"
 )
 
 @ConfigurationParameter(

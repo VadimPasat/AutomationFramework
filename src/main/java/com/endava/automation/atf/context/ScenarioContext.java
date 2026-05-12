@@ -1,8 +1,8 @@
 package com.endava.automation.atf.context;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.Map;
 
 public class ScenarioContext {
 
@@ -26,7 +26,6 @@ public class ScenarioContext {
         data.put(key, value);
     }
 
-    @SuppressWarnings("unchecked")
     public <T> T get(String key, Class<T> type) {
         validateKey(key);
         Object value = data.get(key);

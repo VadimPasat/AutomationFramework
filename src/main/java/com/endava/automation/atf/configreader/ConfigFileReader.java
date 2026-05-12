@@ -134,4 +134,32 @@ public class ConfigFileReader {
                 properties.getProperty("takeScreenShot", "true").trim()
         );
     }
+
+    public boolean isParallelExecution() {
+
+        return Boolean.parseBoolean(
+                properties.getProperty(
+                        "parallel.execution",
+                        "true"
+                )
+        );
+    }
+
+    public int getThreadCount() {
+
+        boolean parallel =
+                isParallelExecution();
+
+        if (!parallel) {
+
+            return 1;
+        }
+
+        return Integer.parseInt(
+                properties.getProperty(
+                        "thread.count",
+                        "4"
+                )
+        );
+    }
 }
